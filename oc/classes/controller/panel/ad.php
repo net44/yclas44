@@ -295,11 +295,16 @@ class Controller_Panel_Ad extends Auth_Controller {
 
 		if (is_array($id_ads))
 		{
-			$ads = new Model_Ad();
-			$ads = $ads->where('id_ad', 'in', $id_ads)->find_all();
+			$ads = (new Model_Ad())->where('id_ad', 'in', $id_ads)->find_all();
 
 			foreach ($ads as $ad)
-				$ad->sold();
+            {
+                if ($ad->sold())
+                {
+                    Model_Subscription::ad_sold($ad->user);
+                    Alert::set(Alert::SUCCESS, __('Advertisement is marked as Sold'));
+                }
+            }
 
 			Alert::set(Alert::SUCCESS, __('Advertisement is marked as sold'));
 		}
