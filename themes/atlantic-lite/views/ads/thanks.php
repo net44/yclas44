@@ -3,7 +3,6 @@
 <div class="mb-4">
     <?if ($page->loaded()):?>
         <h1 class="h2"><?=$page->title?></h1>
-        <div><?=$page->description?></div>
     <?else:?>
         <h2 class="h2"><?=__('Thanks for submitting your advertisement')?></h2>
     <?endif?>
