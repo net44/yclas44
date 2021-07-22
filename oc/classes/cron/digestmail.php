@@ -34,7 +34,7 @@ class Cron_Digestmail {
 
         $ads = (new Model_Ad())
             ->where('status', '=', Model_Ad::STATUS_PUBLISHED)
-            ->where('published', '>', Cron_Digestmail::get_interval_expr_for($interval));
+            ->where('published', 'between', Cron_Digestmail::get_interval_expr_for($interval));
 
         if (Core::config('email.digest_ad_type') === 'featured')
         {
@@ -70,15 +70,15 @@ class Cron_Digestmail {
     {
         if ($interval === 'daily')
         {
-            return DB::expr('NOW() - INTERVAL 1 DAY');
+            return [DB::expr('NOW() - INTERVAL 1 DAY'), DB::expr('NOW()')];
         }
 
         if ($interval === 'monthly')
         {
-            return DB::expr('NOW() - INTERVAL 1 MONTH');
+            return [DB::expr('NOW() - INTERVAL 1 MONTH'), DB::expr('NOW()')];
         }
 
-        return DB::expr('NOW() - INTERVAL 1 WEEK');
+        return [DB::expr('NOW() - INTERVAL 8 DAY'), DB::expr('NOW() - INTERVAL 1 DAY')];
     }
 
 }
