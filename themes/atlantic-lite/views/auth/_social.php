@@ -1,8 +1,8 @@
 <?if (Core::extra_features() == TRUE):?>
     <?if (core::count($providers = Social::enabled_providers()) > 0 OR core::config('social.oauth2_enabled') == TRUE) :?>
-        <ul class="list-inline social-providers">
+        <ul class="list-inline social-providers mb-4 d-flex align-items-center">
             <?foreach ($providers as $key => $provider) :?>
-                <li>
+                <li class="list-inline-item">
                     <?if(strtolower($key) == 'live'):?>
                         <a class="zocial <?=strtolower($key) == 'live' ? 'windows' : ''?>" href="<?=Route::url('default',array('controller'=>'social','action'=>'login','id'=>strtolower($key)))?>">
                             <?=$key?>
@@ -123,7 +123,7 @@
                                 max-width:240px;
                                 min-width:initial;
                                 width:auto;
-                                margin-top: -6px
+                                margin-top: 0;
                             }
                             ._5h0f ._5h0i td:first-child,._5h0f ._xvp._5h0i td:last-child{
                                 width:28px
