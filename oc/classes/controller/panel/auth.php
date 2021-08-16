@@ -466,12 +466,37 @@ class Controller_Panel_Auth extends Controller {
         else
             Alert::set(Alert::INFO, __('Please login to unsubscribe.'));
 
-
         //smart redirect
-        if (Auth::instance()->logged_in())
-            $this->redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'edit')));
-        else
-            $this->redirect(Route::url('default'));
+        if (! Auth::instance()->logged_in())
+        {
+            $this->redirect(Route::url('oc-panel', ['controller' => 'auth', 'action' => 'login']).'?auth_redirect=' . URL::current());
+        }
+
+        $this->redirect(Route::url('oc-panel', ['controller' => 'profile', 'action' => 'edit']));
+    }
+
+    public function action_unsubscribe_from_email_digest()
+    {
+        if (! Auth::instance()->logged_in())
+        {
+            Alert::set(Alert::INFO, __('Please login to unsubscribe.'));
+
+            $this->redirect(Route::url('oc-panel', ['controller' => 'auth', 'action' => 'login']).'?auth_redirect=' . URL::current());
+        }
+
+        $user = Auth::instance()->get_user();
+
+        $user->digest_interval = 'never';
+
+        try {
+            $user->save();
+
+            Alert::set(Alert::SUCCESS, __('You have successfully unsubscribed'));
+        } catch (Exception $e) {
+            throw HTTP_Exception::factory(500, $e->getMessage());
+        }
+
+        $this->redirect(Route::url('oc-panel', ['controller' => 'profile', 'action' => 'edit']));
     }
 
     /**
