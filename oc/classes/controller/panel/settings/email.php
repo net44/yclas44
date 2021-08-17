@@ -88,7 +88,7 @@ class Controller_Panel_Settings_Email extends Auth_Controller {
 
          if(in_array(Core::config('email.service'), ['mailgun']))
          {
-             return 'elasticemail';
+             return 'mailgun';
          }
 
          if(in_array(Core::config('email.service'), ['smtp', 'gmail', 'outlook', 'yahoo', 'zoho']))
