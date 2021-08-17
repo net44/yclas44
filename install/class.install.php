@@ -67,6 +67,12 @@ class install{
      */
     public static function initialize()
     {
+
+        // Sanitize all request variables
+        $_GET    = core::sanitize($_GET);
+        $_POST   = core::sanitize($_POST);
+        $_COOKIE = core::sanitize($_COOKIE);
+
         //Gets language to use in the install
         self::$locale  = core::request('LANGUAGE', core::get_browser_favorite_language());
 
@@ -729,5 +735,42 @@ class core{
     public static function request($key,$default=NULL)
     {
         return (core::post($key)!==NULL)?core::post($key):core::get($key,$default);
+    }
+
+    /**
+     * Recursively sanitizes an input variable:
+     *
+     * - Strips slashes if magic quotes are enabled
+     * - Normalizes all newlines to LF
+     *
+     * @param   mixed   $value  any variable
+     * @return  mixed   sanitized variable
+     */
+    public static function sanitize($value)
+    {
+        if (is_array($value) OR is_object($value))
+        {
+            foreach ($value as $key => $val)
+            {
+                // Recursively clean each value
+                $value[$key] = core::sanitize($val);
+            }
+        }
+        elseif (is_string($value))
+        {
+            // Remove slashes added by magic quotes
+            $value = stripslashes($value);
+
+            if (strpos($value, "\r") !== FALSE)
+            {
+                // Standardize newlines
+                $value = str_replace(array("\r\n", "\r"), "\n", $value);
+            }
+
+            //Added strip tags
+            $value = strip_tags($value);
+        }
+
+        return $value;
     }
 }
