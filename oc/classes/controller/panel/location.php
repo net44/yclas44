@@ -672,4 +672,22 @@ class Controller_Panel_Location extends Auth_Crud {
 
         $this->redirect(Route::url('oc-panel', array('controller' => 'location', 'action' => 'update', 'id' => $location->id_location)));
     }
+
+    public function action_search()
+    {
+        $this->template->title  = __('Locations');
+
+        if (! Core::get('q'))
+        {
+            $this->redirect(Route::url('oc-panel', ['controller'=>'location']));
+        }
+
+        $locations = (new Model_Location())
+            ->where('id_location', '!=', 1)
+            ->where('name', 'like', '%'. Core::get('q') .'%')
+            ->order_by('name','asc')
+            ->find_all();
+
+        $this->template->content = View::factory('oc-panel/pages/locations/search', ['locs' => $locations]);
+    }
 }

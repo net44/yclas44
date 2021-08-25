@@ -14,6 +14,13 @@
             <?= View::factory('oc-panel/components/learn-more', ['url' => 'https://guides.yclas.com/#/Settings-location']) ?>
         </div>
     </div>
+    <div class="mt-4 flex md:mt-0 md:ml-4 border-r pr-4">
+        <span class="mr-3 shadow-sm rounded-md">
+            <?= FORM::open(Route::url('oc-panel', ['controller'=>'location', 'action' => 'search']), ['method' => 'GET'])?>
+                <input type="text" name="q" id="search" class="block form-text w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" placeholder="<?=__('Search')?>" value="<?= Core::get('q') ?>" minlength="3">
+            <?= FORM::close()?>
+        </span>
+    </div>
     <div class="mt-4 flex md:mt-0 md:ml-4">
         <span class="ml-3 shadow-sm rounded-md">
             <a href="<?=Route::url('oc-panel',['controller'=>'location','action'=>'geonames'])?><?=Core::get('id_location') ? '?id_location='.HTML::chars(Core::get('id_location')) : NULL?>" class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:text-gray-800 active:bg-gray-50 transition duration-150 ease-in-out">
