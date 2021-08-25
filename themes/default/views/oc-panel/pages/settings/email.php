@@ -105,7 +105,7 @@
                                     </label>
                                     <p class="text-gray-500 mt-2">
                                         <a href="<?= Route::url('oc-panel/integrations', ['controller' => 'mailgun']) ?>" class="text-blue-600 hover:text-blue-500 focus:outline-none focus:underline transition ease-in-out duration-150">
-                                            <?= __('Go to Maulgun configuration') ?> →
+                                            <?= __('Go to Mailgun configuration') ?> →
                                         </a>
                                     </p>
                                 </div>
