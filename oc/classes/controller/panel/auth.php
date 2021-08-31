@@ -412,12 +412,22 @@ class Controller_Panel_Auth extends Controller {
         $ql = $this->request->param('id');
         $url = Auth::instance()->ql_login($ql);
 
-        //not a url go to login!
-        if ($url==FALSE)
+        //not a valid ql, go to login!
+        if ($url == FALSE)
         {
-            $url = Route::url('oc-panel',array('controller' => 'auth',
-                                                'action'     => 'login'));
+            $ql_decoded = Auth::instance()->ql_decode($ql);
+
+            //try to get the intended url, and go to login!
+            if (isset($ql_decoded[2]))
+            {
+                $intented_url = $ql_decoded[2];
+
+                $this->redirect(Route::url('oc-panel', ['controller' => 'auth', 'action' => 'login']).'?auth_redirect=' . $intented_url);
+            }
+
+            $this->redirect(Route::url('oc-panel', ['controller' => 'auth', 'action' => 'login']));
         }
+
         $this->redirect($url);
     }
 
