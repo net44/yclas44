@@ -54,10 +54,10 @@
                     </div>
                     <div class="sm:col-span-6">
                         <div class="absolute flex items-center h-5">
-                            <?=FORM::checkbox('stripe_3d_secure1', 1, (bool) Core::post('stripe_3d_secure1', Core::config('payment.stripe_3d_secure1')), ['class' => 'form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out'])?>
+                            <?=FORM::checkbox('stripe_3d_secure', 1, (bool) Core::post('stripe_3d_secure', Core::config('payment.stripe_3d_secure')), ['class' => 'form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out'])?>
                         </div>
                         <div class="pl-7 text-sm leading-5">
-                            <?=FORM::label('stripe_3d_secure1', __('Requires 3D security - BETA'), ['class'=>'font-medium text-gray-700'])?>
+                            <?=FORM::label('stripe_3d_secure', __('Requires 3D security - BETA'), ['class'=>'font-medium text-gray-700'])?>
                         </div>
                     </div>
                     <div class="sm:col-span-6">
