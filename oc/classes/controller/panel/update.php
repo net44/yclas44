@@ -28,6 +28,16 @@ class Controller_Panel_Update extends Auth_Controller
                 'group_name' => 'email',
                 'config_value' => '20',
             ],
+            [
+                'config_key' => 'stripe_webhooks',
+                'group_name' => 'payment',
+                'config_value' => '0',
+            ],
+            [
+                'config_key' => 'stripe_webhook_secret',
+                'group_name' => 'payment',
+                'config_value' => '',
+            ],
         ];
 
         Model_Config::config_array($configs);
