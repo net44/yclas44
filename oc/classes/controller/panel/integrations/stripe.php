@@ -23,6 +23,8 @@ class Controller_Panel_Integrations_Stripe extends Auth_Controller {
             Model_Config::set_value('payment', 'stripe_appfee_fixed', Core::post('stripe_appfee_fixed'));
             Model_Config::set_value('payment', 'stripe_cancel_orders_after_n_days', Core::post('stripe_cancel_orders_after_n_days'));
             Model_Config::set_value('payment', 'stripe_connected_account_mandatory', Core::post('stripe_connected_account_mandatory'));
+            Model_Config::set_value('payment', 'stripe_webhooks', Core::post('stripe_webhooks') ?? 0);
+            Model_Config::set_value('payment', 'stripe_webhook_secret', Core::post('stripe_webhook_secret'));
 
             Alert::set(Alert::SUCCESS, __('Configuration updated'));
 

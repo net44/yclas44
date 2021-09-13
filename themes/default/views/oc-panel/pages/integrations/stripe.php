@@ -9,7 +9,7 @@
 <?= Form::open(Route::url('oc-panel/integrations', ['controller' => 'stripe'])) ?>
     <div class="bg-white shadow sm:rounded-lg mt-8">
         <div class="px-4 py-5 sm:p-6">
-            <div>
+            <div x-data="{ legacy: <?= Core::post('stripe_legacy', Core::config('payment.stripe_legacy')) ? 'true' : 'false' ?>, webhooks: <?= Core::post('stripe_webhooks', Core::config('payment.stripe_webhooks')) ? 'true' : 'false' ?> }">
                 <div class="grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">
                     <div class="sm:col-span-4">
                         <?= FORM::label('stripe_private', 'Stripe private key', array('class'=>'block text-sm font-medium leading-5 text-gray-700'))?>
@@ -27,15 +27,40 @@
                             ])?>
                         </div>
                     </div>
-                    <div class="sm:col-span-6">
+                    <div class="sm:col-span-4" x-show="! legacy">
                         <div class="absolute flex items-center h-5">
-                            <?=FORM::checkbox('stripe_address', 1, (bool) Core::post('stripe_address', Core::config('payment.stripe_address')), ['class' => 'form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out'])?>
+                            <?=FORM::checkbox('stripe_webhooks', 1, '', ['x-model' => 'webhooks', 'class' => 'form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out'])?>
                         </div>
                         <div class="pl-7 text-sm leading-5">
-                            <?=FORM::label('stripe_address', __('Requires address to pay for extra security'), ['class'=>'font-medium text-gray-700'])?>
+                            <?= FORM::label('stripe_webhooks', __('Enable Stripe Webhooks'), ['class'=>'font-medium text-gray-700']) ?>
+                            <p class="text-gray-500">
+                                <?= __('Receive event notifications with webhooks.') ?>
+                                <?= sprintf(
+                                    __('Please, add the <b><code>%s</code></b> endpoint, and configure it to listen for the <b><code>payment_intent.succeeded</code></b> event in your Stripe control panel.'),
+                                    Route::url('default', ['controller' => 'stripecheckout', 'webhook' => 'result', 'id' => 1])
+                                ) ?>
+                            </p>
+                            <p class="text-gray-500">
+                            </p>
+                            <p class="text-gray-500">
+                                <a class="underline" href="https://stripe.com/docs/webhooks" target="_blank">
+                                    Stripe Docs →
+                                </a>
+                            </p>
                         </div>
                     </div>
-                    <div class="sm:col-span-6">
+                    <div class="sm:col-span-4" x-show="webhooks && ! legacy">
+                        <?= FORM::label('stripe_webhook_secret', 'Stripe webhook secret key', array('class'=>'block text-sm font-medium leading-5 text-gray-700'))?>
+                        <div class="mt-1 rounded-md shadow-sm">
+                            <?= FORM::input('stripe_webhook_secret', Core::post('stripe_webhook_secret', Core::config('payment.stripe_webhook_secret')), [
+                                'class' => 'form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
+                            ])?>
+                        </div>
+                        <p class="text-sm text-gray-500">
+                            <?= __('The webhook secret may be retrieved from your Stripe account dashboard.') ?>
+                        </p>
+                    </div>
+                    <div class="sm:col-span-6" x-show="! legacy">
                         <div class="absolute flex items-center h-5">
                             <?=FORM::checkbox('stripe_ideal', 1, (bool) Core::post('stripe_ideal', Core::config('payment.stripe_ideal')), ['class' => 'form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out'])?>
                         </div>
@@ -46,26 +71,34 @@
                     </div>
                     <div class="sm:col-span-6">
                         <div class="absolute flex items-center h-5">
+                            <?=FORM::checkbox('stripe_legacy', 1, '', ['x-model' => 'legacy', 'class' => 'form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out'])?>
+                        </div>
+                        <div class="pl-7 text-sm leading-5">
+                            <?=FORM::label('stripe_legacy', __('Legacy Checkout'), ['class'=>'font-medium text-gray-700'])?>
+                        </div>
+                    </div>
+                    <div class="sm:col-span-6 pl-7" x-show="legacy">
+                        <div class="absolute flex items-center h-5">
+                            <?=FORM::checkbox('stripe_address', 1, (bool) Core::post('stripe_address', Core::config('payment.stripe_address')), ['class' => 'form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out'])?>
+                        </div>
+                        <div class="pl-7 text-sm leading-5">
+                            <?=FORM::label('stripe_address', __('Requires address to pay for extra security'), ['class'=>'font-medium text-gray-700'])?>
+                        </div>
+                    </div>
+                    <div class="sm:col-span-6 pl-7" x-show="legacy">
+                        <div class="absolute flex items-center h-5">
                             <?=FORM::checkbox('stripe_alipay', 1, (bool) Core::post('stripe_alipay', Core::config('payment.stripe_alipay')), ['class' => 'form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out'])?>
                         </div>
                         <div class="pl-7 text-sm leading-5">
                             <?=FORM::label('stripe_alipay', __('Accept Alipay payments'), ['class'=>'font-medium text-gray-700'])?>
                         </div>
                     </div>
-                    <div class="sm:col-span-6">
+                    <div class="sm:col-span-6 pl-7" x-show="legacy">
                         <div class="absolute flex items-center h-5">
                             <?=FORM::checkbox('stripe_3d_secure', 1, (bool) Core::post('stripe_3d_secure', Core::config('payment.stripe_3d_secure')), ['class' => 'form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out'])?>
                         </div>
                         <div class="pl-7 text-sm leading-5">
                             <?=FORM::label('stripe_3d_secure', __('Requires 3D security - BETA'), ['class'=>'font-medium text-gray-700'])?>
-                        </div>
-                    </div>
-                    <div class="sm:col-span-6">
-                        <div class="absolute flex items-center h-5">
-                            <?=FORM::checkbox('stripe_legacy', 1, (bool) Core::post('stripe_legacy', Core::config('payment.stripe_legacy')), ['class' => 'form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out'])?>
-                        </div>
-                        <div class="pl-7 text-sm leading-5">
-                            <?=FORM::label('stripe_legacy', __('Legacy Checkout'), ['class'=>'font-medium text-gray-700'])?>
                         </div>
                     </div>
                 </div>
