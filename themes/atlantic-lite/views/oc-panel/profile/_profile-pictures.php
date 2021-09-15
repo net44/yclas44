@@ -57,13 +57,13 @@
             </div>
         </div>
 
-        <? if(Core::config('advertisement.num_images') > Core::count($images)): ?>
+        <? if(Core::config('advertisement.num_images') > $user->has_image): ?>
             <div class="card-body border-top">
                 <div class="form-group">
                     <h6 class="card-title"><?= _e('Add image') ?></h6>
 
                     <div>
-                        <? for ($i = 0; $i < (Core::config('advertisement.num_images') - core::count($images)); $i++): ?>
+                        <? for ($i = 0; $i < (Core::config('advertisement.num_images') - $user->has_image); $i++): ?>
                             <div class="fileinput fileinput-new <?= ($i >= 1) ? 'hidden' : NULL ?>" data-provides="fileinput">
                                 <div class="fileinput-preview img-thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
 
