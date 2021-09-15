@@ -366,12 +366,12 @@
 	                                    </div>
 	                                <?endif?>
 	                            </div>
-	                            <?if (core::config('advertisement.num_images') > core::count($images)):?>
+	                            <?if (core::config('advertisement.num_images') > $user->has_image):?>
 	                                <hr>
 	                                <div class="form-group">
 	                                    <h5><?=_e('Add image')?></h5>
 	                                    <div>
-	                                        <?for ($i = 0; $i < (core::config('advertisement.num_images') - core::count($images)); $i++):?>
+	                                        <?for ($i = 0; $i < (core::config('advertisement.num_images') - $user->has_image); $i++):?>
 	                                            <div class="fileinput fileinput-new <?=($i >= 1) ? 'hidden' : NULL?>" data-provides="fileinput">
 	                                                <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
 	                                                <div>
