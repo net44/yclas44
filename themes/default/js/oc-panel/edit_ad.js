@@ -867,7 +867,7 @@ function createCustomFieldsByCategory (customfields) {
                                                                                                         'title'       : customfield.translated_tooltip,
                                                                                                         'required'    : customfield.required,
                                                                                                         'value'       : radioidx + 1,
-                                                                                                        'checked'     : (value == $('#custom-fields').data('customfield-values')[customfield.label]) ? true:false,
+                                                                                                        'checked'     : (value == $('#custom-fields').data('customfield-values')[customfield.translated_label]) ? true:false,
                                                                                                     })).append(value)).insertBefore($template.find('div[data-input]'));
                 });
                 $template.find('div[data-input]').remove();
