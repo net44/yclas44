@@ -1055,7 +1055,8 @@ class Model_Ad extends ORM {
                                 $cf_value = ($cf_value)?'checkbox_'.$cf_value:NULL;
                                 break;
                             case 'radio':
-                                $cf_value = isset($cf_config->$cf_name->values[$cf_value-1]) ? $cf_config->$cf_name->values[$cf_value-1] : NULL;
+                                $translated_values = Model_Field::translate_values(json_decode(json_encode($cf_config->$cf_name), TRUE));
+                                $cf_value = isset($translated_values[$cf_value-1]) ? $translated_values[$cf_value-1] : NULL;
                                 break;
                             case 'date':
                                 if(strtolower(Request::current()->controller()) != 'myads' AND strtolower(Request::current()->action()) != 'update')
