@@ -30,19 +30,21 @@ class Model_Order extends ORM {
     /**
      * Status constants
      */
-    const STATUS_CREATED        = 0;   // just created
-    const STATUS_PAID           = 1;   // paid!
-    const STATUS_REFUSED        = 5;   //tried to paid but not succeed
-    const STATUS_REFUND         = 99;  //we refunded the money
+    const STATUS_CREATED                = 0;   // just created
+    const STATUS_PAID                   = 1;   // paid!
+    const STATUS_REFUSED                = 5;   // tried to paid but not succeed
+    const STATUS_PENDING_CONFIRMATION   = 10;  // pending confirmation
+    const STATUS_REFUND                 = 99;  // we refunded the money
 
     /**
      * @var  array  Available statuses array
      */
     public static $statuses = array(
-        self::STATUS_CREATED      =>  'Created',
-        self::STATUS_PAID         =>  'Paid',
-        self::STATUS_REFUSED      =>  'Refused',
-        self::STATUS_REFUND       =>  'Refund',
+        self::STATUS_CREATED                =>  'Created',
+        self::STATUS_PAID                   =>  'Paid',
+        self::STATUS_REFUSED                =>  'Refused',
+        self::STATUS_REFUND                 =>  'Refund',
+        self::STATUS_PENDING_CONFIRMATION   =>  'Pending confirmation',
     );
 
     /**
@@ -714,6 +716,25 @@ class Model_Order extends ORM {
         }
 
         $this->paid_out = Date::unix2mysql();
+
+        try {
+            $this->save();
+        } catch (Exception $e) {
+            throw HTTP_Exception::factory(500, $e->getMessage());
+        }
+    }
+
+    /**
+     * mark an order as paid out
+     */
+    public function mark_as_pending_confirmation()
+    {
+        if($this->status == static::STATUS_PAID)
+        {
+            return;
+        }
+
+        $this->status = static::STATUS_PENDING_CONFIRMATION;
 
         try {
             $this->save();

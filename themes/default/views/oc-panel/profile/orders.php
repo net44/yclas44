@@ -32,6 +32,7 @@
                                     Model_Order::STATUS_PAID =>  __('Paid'),
                                     Model_Order::STATUS_REFUSED =>  __('Refused'),
                                     Model_Order::STATUS_REFUND =>  __('Refund'),
+                                    Model_Order::STATUS_PENDING_CONFIRMATION =>  __('Pending confirmation'),
                                 ]
                             ?>
 
