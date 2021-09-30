@@ -96,18 +96,6 @@ class StripeCheckout {
 
         self::init();
 
-        if (! is_null($order->txn_id) AND substr($order->txn_id, 0, 3) === "pi_")
-        {
-            $stripe_payment_intent = \Stripe\PaymentIntent::retrieve($order->txn_id);
-
-            if ($stripe_payment_intent->status == 'processing')
-            {
-                Alert::set(Alert::WARNING, __('Your payment is still being processed.'));
-
-                return NULL;
-            }
-        }
-
         $parameters = [
             'payment_method_types' => Core::config('payment.stripe_ideal') ? ['card', 'ideal'] : ['card'],
             'line_items' => [[

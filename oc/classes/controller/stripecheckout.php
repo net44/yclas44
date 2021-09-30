@@ -71,6 +71,8 @@ class Controller_StripeCheckout extends Controller{
            ->limit(1)
            ->find();
 
+        $order->mark_as_pending_confirmation();
+
         $moderation = core::config('general.moderation');
 
         if ($moderation == Model_Ad::PAYMENT_MODERATION
