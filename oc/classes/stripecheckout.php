@@ -105,6 +105,7 @@ class StripeCheckout {
                 'currency' => $order->currency,
                 'quantity' => 1,
             ]],
+            'metadata' => ['id_order' => $order->id_order],
             'success_url' => Route::url('default', [
                 'controller' => 'stripecheckout',
                 'action' => Core::config('payment.stripe_webhooks') ? 'thanks' : 'success',
