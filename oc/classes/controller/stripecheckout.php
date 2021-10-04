@@ -210,25 +210,25 @@ class Controller_StripeCheckout extends Controller{
             throw HTTP_Exception::factory(400, 'Invalid signature');
         }
 
-        if ($event->type !== 'payment_intent.succeeded')
+        if ($event->type !== 'checkout.session.completed')
         {
             return 'Received unknown event type ' . $event->type;
         }
 
-        $payment_intent = $event->data->object;
+        $checkout_session = $event->data->object;
 
         $order = (new Model_Order())
-            ->where('txn_id', '=', $payment_intent->id)
-            ->where('status', '=', Model_Order::STATUS_CREATED)
+            ->where('id_order', '=', $checkout_session->metadata->id_order)
+            ->where('status', 'in', [Model_Order::STATUS_CREATED, Model_Order::STATUS_PENDING_CONFIRMATION])
             ->limit(1)
             ->find();
 
         if (! $order->loaded())
         {
-            throw HTTP_Exception::factory(400, 'Invalid payment intent id ' . $payment_intent->id);
+            throw HTTP_Exception::factory(400, 'Invalid order id ' . $checkout_session->metadata->id_order);
         }
 
-        $order->confirm_payment('stripe', $payment_intent->id);
+        $order->confirm_payment('stripe', $checkout_session->payment_intent);
 
         // process app fee
         if (
@@ -254,7 +254,7 @@ class Controller_StripeCheckout extends Controller{
                 'id_order->'.$order->id_order.' id_ad->'.$order->ad->id_ad
             );
 
-            $order_app->confirm_payment('stripe', $payment_intent->id);
+            $order_app->confirm_payment('stripe', $checkout_session->payment_intent);
         }
     }
 }
