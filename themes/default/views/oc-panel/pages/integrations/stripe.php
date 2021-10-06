@@ -36,7 +36,7 @@
                             <p class="text-gray-500">
                                 <?= __('Receive event notifications with webhooks.') ?>
                                 <?= sprintf(
-                                    __('Please, add the <b><code>%s</code></b> endpoint, and configure it to listen for the <b><code>payment_intent.succeeded</code></b> event in your Stripe control panel.'),
+                                    __('Please, add the <b><code>%s</code></b> endpoint, and configure it to listen for the <b><code>checkout.session.completed</code></b> event in your Stripe control panel.'),
                                     Route::url('default', ['controller' => 'stripecheckout', 'action' => 'webhook', 'id' => 1])
                                 ) ?>
                             </p>
