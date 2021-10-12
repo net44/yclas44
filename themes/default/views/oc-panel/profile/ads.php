@@ -29,11 +29,11 @@
                     </td>
 
                     <td>
-                        <?= $ad->category->name ?>
+                        <?= $ad->category->translate_name() ?>
                     </td>
 
                     <? if($ad->id_location): ?>
-                        <td><?= $ad->location->name ?></td>
+                        <td><?= $ad->location->translate_name() ?></td>
                     <? else: ?>
                         <td>n/a</td>
                     <? endif ?>
