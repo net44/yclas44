@@ -92,10 +92,10 @@
 				                        -
 				                    <? endif ?>
 								</p>
-								<p><b><?=_e('Category')?> : </b><?= $ad->category->name ?></p>
+								<p><b><?=_e('Category')?> : </b><?= $ad->category->translate_name() ?></p>
 
 								<? if($ad->id_location): ?>
-							        <p><b><?=_e('Location')?> : </b><?= $ad->location->name ?></p>
+							        <p><b><?=_e('Location')?> : </b><?= $ad->location->translate_name() ?></p>
 							    <? else: ?>
 							        <p><b><?=_e('Location')?> : </b>n/a</p>
 							    <? endif ?>
