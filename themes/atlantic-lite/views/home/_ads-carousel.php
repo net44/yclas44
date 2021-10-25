@@ -26,11 +26,11 @@
                 </div>
             </div>
         </div>
-        <a class="carousel-control-prev" href="#home-ads-carousel" role="button" data-slide="prev">
+        <a class="carousel-control-prev" href="#home-ads-carousel" role="button" data-slide="prev" style="width: 3%;">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only"><?= _('Previous') ?></span>
         </a>
-        <a class="carousel-control-next" href="#home-ads-carousel" role="button" data-slide="next">
+        <a class="carousel-control-next" href="#home-ads-carousel" role="button" data-slide="next" style="width: 3%;">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only"><?= _('Next') ?></span>
         </a>
