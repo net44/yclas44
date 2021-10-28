@@ -213,11 +213,11 @@ class I18n extends Kohana_I18n {
     {
         //using the gettext dropin forced
         if (self::$dropin === TRUE)
-            return _gettext($string);
+            return stripslashes(_gettext($string));
         elseif (is_array($string))
-            return _(implode(',',$string));
+            return stripslashes(_(implode(',',$string)));
         else
-            return _($string);
+            return stripslashes(_($string));
     }
 
     public static $locales = array(
@@ -1287,7 +1287,7 @@ function _e($string, array $values = NULL, $lang = 'en-us')
     $string = empty($values) ? $string : strtr($string, $values);
 
     if (Core::get('edit_translation') !== '1')
-        return stripslashes($string);
+        return $string;
 
     $attributes = [
         'class' => 'editable',
@@ -1306,5 +1306,5 @@ function _e($string, array $values = NULL, $lang = 'en-us')
         $compiled_attributes .= '="'.htmlspecialchars( (string) $value, ENT_QUOTES, Kohana::$charset, TRUE).'"';
     }
 
-    return '<span '.$compiled_attributes.'>'.stripslashes($string).'</span>';
+    return '<span '.$compiled_attributes.'>'.$string.'</span>';
 }
