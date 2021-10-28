@@ -222,6 +222,11 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
                 }
             }
 
+            if (core::post('cf_language') AND array_key_exists(core::post('cf_language'), i18n::get_languages()) )
+            {
+                Cookie::set('user_language', core::post('cf_language'), Core::config('auth.lifetime'));
+            }
+
             try {
                 $user->save();
                 Alert::set(Alert::SUCCESS, __('You have successfully changed your data'));

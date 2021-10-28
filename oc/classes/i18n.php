@@ -43,16 +43,41 @@ class I18n extends Kohana_I18n {
         //we allow to choose lang from the url
         if (Core::config('i18n.allow_query_language') == 1 OR Core::config('general.multilingual') == 1)
         {
-            if(Core::get('language')!==NULL)
+            if(Core::get('language') !== NULL)
+            {
                 $locale  = Core::get('language');
-            elseif (Cookie::get('user_language')!==NULL)
+            }
+            elseif (Cookie::get('user_language') !== NULL)
+            {
                 $locale = Cookie::get('user_language');
+            }
+            elseif (Auth::instance()->logged_in() AND isset(Auth::instance()->get_user()->cf_language))
+            {
+                $locale = Auth::instance()->get_user()->cf_language;
+            }
+            elseif (Core::config('general.multilingual') AND key(Request::accept_lang()) !== NULL)
+            {
+                $locale = array_key_first(self::get_selectable_languages());
+                $browser_locale = substr(key(Request::accept_lang()), 0, 2);
+
+                foreach (array_keys(self::get_selectable_languages()) as $language)
+                {
+                    if (substr($language, 0, 2) == $browser_locale)
+                    {
+                        $locale = $language;
+                    }
+                }
+            }
 
             //does the locale exists?
-            if (array_key_exists($locale,self::get_languages()) )
+            if (array_key_exists($locale, self::get_languages()) )
+            {
                 Cookie::set('user_language',$locale, Core::config('auth.lifetime'));
+            }
             else
+            {
                 $locale = self::$locale_default;
+            }
         }
 
         self::$lang    = $locale;//used in i18n kohana
@@ -158,19 +183,22 @@ class I18n extends Kohana_I18n {
      * get selectable languages
      * @return array
      */
-    public static function get_selectable_languages()
+    public static function get_selectable_languages($abbrev = FALSE)
     {
         $selectable_languages = array();
-
         $languages = explode(',', core::config('general.languages'));
         $languages = array_intersect($languages, self::get_languages());
-
-        foreach ($languages as $language) {
-            $selectable_languages[$language] = self::get_display_language($language);
+        foreach ($languages as $language)
+        {
+            if ($abbrev)
+            {
+                $selectable_languages[$language] = strtoupper(substr($language, 0, 2));
+            }
+            else
+            {
+                $selectable_languages[$language] = self::get_display_language($language);
+            }
         }
-
-        //alphabetical order
-        asort($selectable_languages);
 
         return $selectable_languages;
     }

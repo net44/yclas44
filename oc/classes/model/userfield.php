@@ -91,6 +91,11 @@ class Model_UserField {
                         ->string($this->_name_prefix.$name, 145);
                     break;
 
+                case 'language':
+                    $table->add_column()
+                        ->string($this->_name_prefix.$name, 145);
+                    break;
+
                 case 'string':            
                 default:
                     $table->add_column()
