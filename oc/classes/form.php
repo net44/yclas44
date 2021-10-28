@@ -429,6 +429,14 @@ class Form extends Kohana_Form {
             case 'country':
                 $input = FORM::select($name, EUVAT::countries(), (! is_array($value)) ? $value : NULL, $attributes);
                 break;
+            case 'language':
+                if(is_null($value))
+                {
+                    $value = i18n::$locale;
+                }
+
+                $input = FORM::select($name, i18n::get_selectable_languages(TRUE), (! is_array($value)) ? $value : NULL, $attributes);
+                break;
             case 'file':
                 $input = FORM::hidden($name, $value, $attributes);
                 break;

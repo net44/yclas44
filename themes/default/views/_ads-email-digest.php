@@ -17,8 +17,8 @@
                         <?if($ad->id_location != 1):?>
                             <br>
                             <font color="#6B7280">Location:</font>
-                            <a href="<?=Route::url('list', ['location' => $ad->location->seoname])?>" title="<?= HTML::chars($ad->location->translate_name()) ?>">
-                                <font color="#059669"><?=$ad->location->translate_name() ?></font>
+                            <a href="<?=Route::url('list', ['location' => $ad->location->seoname])?>" title="<?= HTML::chars($ad->location->translate_name($language)) ?>">
+                                <font color="#059669"><?=$ad->location->translate_name($language) ?></font>
                             </a>
                         <?endif?>
                         <br>

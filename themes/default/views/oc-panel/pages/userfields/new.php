@@ -53,6 +53,7 @@
                             'email' => __('Email'),
                             'country' => __('Country'),
                             'checkbox' => __('Checkbox'),
+                            'language' => __('Language'),
                         ];
                     ?>
                     <?= FORM::label('type', __('Type'), array('class'=>'block text-sm font-medium leading-5 text-gray-700'))?>

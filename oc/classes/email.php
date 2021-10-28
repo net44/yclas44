@@ -98,10 +98,9 @@ class Email {
      * @param  array $file      file to attach to email
      * @return boolean            s
      */
-    public static function content($to, $to_name='', $from = NULL, $from_name =NULL, $content, $replace, $file=NULL)
+    public static function content($to, $to_name='', $from = NULL, $from_name =NULL, $content, $replace, $file=NULL, $language = NULL)
     {
-
-        $email = Model_Content::get_by_title($content,'email');
+        $email = Model_Content::get_by_title($content, 'email', $language);
 
         //content found
         if ($email->loaded())
@@ -341,9 +340,14 @@ class Email {
         return $arr;
     }
 
-    public static function send_digest_mail($recipients, $ads = NULL)
+    public static function send_digest_mail($recipients, $ads = NULL, $interval = NULL, $language = NULL)
     {
-        $digest_mail_content = Model_Content::get_by_title('digest', 'email');
+        $digest_mail_content = Model_Content::get_by_title('digest-' . $interval, 'email', $language);
+
+        if (! $digest_mail_content->loaded())
+        {
+            $digest_mail_content = Model_Content::get_by_title('digest', 'email', $language);
+        }
 
         if (! $digest_mail_content->loaded())
         {
@@ -360,7 +364,7 @@ class Email {
         $replace = [
             '[SITE.NAME]' => core::config('general.site_name'),
             '[SITE.URL]' => core::config('general.base_url'),
-            '[ADS]' => View::factory('_ads-email-digest', ['ads' => $ads])->render(),
+            '[ADS]' => View::factory('_ads-email-digest', ['ads' => $ads, 'language' => $language])->render(),
         ];
 
         $subject = str_replace(array_keys($replace), array_values($replace), $digest_mail_content->title);
@@ -370,6 +374,7 @@ class Email {
             'title' => $subject,
             'content' => $content,
             'unsubscribe_link' => $unsubscribe_link,
+            'language' => $language,
         ])->render();
 
         switch (core::config('email.service')) {

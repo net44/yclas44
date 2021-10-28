@@ -63,6 +63,9 @@ class Model_Post extends ORM {
         $form->fields['id_user']['value']       =  auth::instance()->get_user()->id_user;
         $form->fields['id_user']['display_as']  = 'hidden';
 
+        $form->fields['locale']['display_as']  = 'select';
+        $form->fields['locale']['options']     = i18n::get_selectable_languages();
+
         $form->fields['seotitle']['display_as']  = 'hidden';
 
     }
@@ -382,6 +385,21 @@ array (
     'is_nullable' => false,
     'ordinal_position' => 10,
     'display' => '1',
+    'comment' => '',
+    'extra' => '',
+    'key' => '',
+    'privileges' => 'select,insert,update,references',
+  ),
+  'locale' =>
+  array (
+    'type' => 'string',
+    'column_name' => 'locale',
+    'column_default' => NULL,
+    'data_type' => 'varchar',
+    'is_nullable' => false,
+    'ordinal_position' => 2,
+    'character_maximum_length' => '8',
+    'collation_name' => 'utf8_general_ci',
     'comment' => '',
     'extra' => '',
     'key' => '',

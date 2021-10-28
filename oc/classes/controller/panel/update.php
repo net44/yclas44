@@ -67,6 +67,10 @@ class Controller_Panel_Update extends Auth_Controller
                                     ('Dispatch Weekly Digest', '0 7 * * SAT', 'Cron_Digestmail::dispatch_weekly_digest', NULL, 'Dispatch Weekly Digest at 07:00 on Saturday', 1),
                                     ('Dispatch Monthly Digest', '0 7 1 * *', 'Cron_Digestmail::dispatch_monthly_digest', NULL, 'Dispatch Monthly Digest at 07:00 on day-of-month 1', 1);")->execute();
         } catch (exception $e) {}
+
+        try {
+            DB::query(Database::UPDATE, "ALTER TABLE `".self::$db_prefix."posts` ADD `locale` varchar(5) DEFAULT NULL")->execute();
+        } catch (exception $e) {}
     }
 
     public function action_430()
