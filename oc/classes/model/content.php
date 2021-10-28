@@ -88,21 +88,22 @@ class Model_Content extends ORM {
      * @param  string $seotitle
      * @param  string $type
      */
-    public static function get_by_title($seotitle, $type = 'page')
+    public static function get_by_title($seotitle, $type = 'page', $language = NULL)
     {   
         //we remove the '.' replace them by _ since its not allowed as seo title. Just in case we forgot somewhere in the code a '.'
         $seotitle = str_replace('.', '-', $seotitle);
 
         //allow to preview the content? not for email
         $preview_content = (Auth::instance()->logged_in() AND (Auth::instance()->get_user()->is_admin() OR Auth::instance()->get_user()->is_moderator() OR Auth::instance()->get_user()->is_translator()) AND $type != 'email');
-
-        $content = new self();
         
         //search content for current locale    
-        $content = $content->where('seotitle','=', $seotitle)
-                 ->where('locale','=', i18n::$locale)
-                 ->where('type','=', $type)
-                 ->limit(1)->cached()->find();
+        $content = (new self())
+                ->where('seotitle', '=', $seotitle)
+                ->where('locale', '=', $language ? $language : i18n::$locale)
+                ->where('type', '=', $type)
+                ->limit(1)
+                ->cached()
+                ->find();
 
         //was not found try first translation in english
         if (!$content->loaded())
