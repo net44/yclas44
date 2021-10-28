@@ -25,13 +25,22 @@ class Controller_Blog extends Controller {
 	    $this->template->title            = __('Blog');
 	    $this->template->meta_description = core::config('general.site_name').' '.__('blog section.');
 
-	    $posts = new Model_Post();
-        $posts->where('status','=', Model_Post::STATUS_ACTIVE)->where('id_forum','IS',NULL);
+	    $posts = (new Model_Post())
+            ->where('status', '=', Model_Post::STATUS_ACTIVE)
+            ->where('id_forum', 'IS', NULL);
 
-        if ( ($search=Core::get('search'))!==NULL AND strlen(Core::get('search'))>=3 )
-        $posts->where_open()
-             ->where('title','like','%'.$search.'%')->or_where('description','like','%'.$search.'%')
-             ->where_close();
+        if (Core::config('general.multilingual'))
+        {
+            $posts->where('locale', '=', i18n::$locale);
+        }
+
+        if ( ($search = Core::get('search')) !== NULL AND strlen(Core::get('search'))>=3 )
+        {
+            $posts->where_open()
+                 ->where('title', 'like', '%' . $search . '%')
+                 ->or_where('description', 'like', '%' . $search . '%')
+                 ->where_close();
+        }
 
         $res_count = clone $posts;
         $res_count = $res_count->count_all();

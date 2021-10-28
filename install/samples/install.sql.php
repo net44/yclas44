@@ -250,6 +250,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `ip_address` bigint DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '0',
+  `locale` varchar(5) DEFAULT NULL,
   PRIMARY KEY (`id_post`) USING BTREE,
   UNIQUE KEY `".core::request('TABLE_PREFIX')."posts_UK_seotitle` (`seotitle`),
   KEY `".core::request('TABLE_PREFIX')."posts_IK_id_user` (`id_user`),

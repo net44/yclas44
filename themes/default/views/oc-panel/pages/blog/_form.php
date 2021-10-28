@@ -11,6 +11,12 @@
                 <?=FORM::label($form_fields['title']['field_id'], __('Title'), ['class' => 'block text-sm font-medium leading-5 text-gray-700', 'for' => $form_fields['title']['field_id']])?>
                 <?=FORM::input($form_fields['title']['field_name'], $form_fields['title']['value'], ['placeholder' => __('Title'), 'class' => 'mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5', 'id' => $form_fields['title']['field_id'], 'required'])?>
             </div>
+            <? if (Core::config('general.multilingual')) : ?>
+                <div class="col-span-3 sm:col-span-2">
+                    <?=FORM::label($form_fields['locale']['field_id'], __('Locale'), ['class' => 'block text-sm font-medium leading-5 text-gray-700', 'for' => $form_fields['locale']['field_id']])?>
+                    <?=FORM::select($form_fields['locale']['field_name'], i18n::get_selectable_languages(), $form_fields['locale']['value'], ['class' => 'mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5', 'required'])?>
+                </div>
+            <? endif ?>
             <div class="col-span-3">
                 <?=FORM::label($form_fields['description']['field_id'], __('Description'), ['class'=>'block text-sm leading-5 font-medium text-gray-700', 'for'=>$form_fields['description']['field_id']])?>
                 <div class="rounded-md shadow-sm">
