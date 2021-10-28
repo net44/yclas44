@@ -34,9 +34,14 @@ class Controller_FAQ extends Controller {
         $this->template->scripts['footer'][] = Route::url('default',array('controller'=>'jslocalization','action'=>'faq'));
 
         //FAQ CMS
-        $faqs =  new Model_Content();
-        $faqs = $faqs->where('type','=','help')->where('status','=','1')->order_by('order','asc')->find_all();
+        $faqs = (new Model_Content())->where('type','=','help')->where('status','=','1');
 
+        if (Core::config('general.multilingual'))
+        {
+            $faqs->where('locale', '=', i18n::$locale);
+        }
+
+        $faqs = $faqs->order_by('order','asc')->find_all();
 
         $this->template->bind('content', $content);
 
@@ -68,6 +73,11 @@ class Controller_FAQ extends Controller {
                  ->where('title','like','%'.$search.'%')->or_where('description','like','%'.$search.'%')
                  ->where_close();
 
+        if (Core::config('general.multilingual'))
+        {
+            $faqs->where('locale', '=', i18n::$locale);
+        }
+
         $faqs = $faqs->order_by('order','asc')->find_all();
 
         $this->template->bind('content', $content);
@@ -89,7 +99,7 @@ class Controller_FAQ extends Controller {
     public function action_view($seotitle)
     {
 
-        $faq = Model_Content::get_by_title($seotitle,'help');
+        $faq = Model_Content::get_by_title($seotitle, 'help');
 
         if ($faq->loaded())
         {
