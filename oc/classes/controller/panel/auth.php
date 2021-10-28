@@ -197,7 +197,11 @@ class Controller_Panel_Auth extends Controller {
 
                     //we don't use this since checks if the user is subscribed which is stupid since you want to remember your password.
                     //$ret = $user->email('auth-remember',array('[URL.QL]'=>$url_ql));
-                    $ret = Email::content($user->email,$user->name,NULL,NULL,'auth-remember',array('[URL.QL]'=>$url_ql));
+                    $ret = Email::content(
+                        $user->email, $user->name, NULL, NULL,
+                        'auth-remember', ['[URL.QL]'=>$url_ql], NULL,
+                        isset($user->cf_language) ? $user->cf_language : NULL
+                    );
 
                     //email sent notify and redirect him
                     if ($ret)

@@ -98,10 +98,9 @@ class Email {
      * @param  array $file      file to attach to email
      * @return boolean            s
      */
-    public static function content($to, $to_name='', $from = NULL, $from_name =NULL, $content, $replace, $file=NULL)
+    public static function content($to, $to_name='', $from = NULL, $from_name =NULL, $content, $replace, $file=NULL, $language = NULL)
     {
-
-        $email = Model_Content::get_by_title($content,'email');
+        $email = Model_Content::get_by_title($content, 'email', $language);
 
         //content found
         if ($email->loaded())

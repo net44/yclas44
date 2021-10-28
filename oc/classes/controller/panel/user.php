@@ -155,7 +155,11 @@ class Controller_Panel_User extends Auth_CrudAjax {
 						$user->save();
 
 						// email user with new password
-						Email::content($user->email,$user->name,NULL,NULL,'password-changed',array('[USER.PWD]'=>core::post('password1')));
+                        Email::content(
+                            $user->email, $user->name, NULL, NULL, 'password-changed',
+                            ['[USER.PWD]' => core::post('password1')], NULL,
+                            isset($user->cf_language) ? $user->cf_language : NULL
+                        );
 					}
 					catch (ORM_Validation_Exception $e)
 					{

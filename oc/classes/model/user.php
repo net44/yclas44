@@ -384,7 +384,11 @@ class Model_User extends ORM {
     {
         if ($this->loaded() AND $this->subscriber == 1)
         {
-            return Email::content(($to == NULL)?$this->email:$to,$this->name,$from,$from_name,$seotitle,$replace, $file);
+            return Email::content(
+                ($to == NULL) ? $this->email : $to,
+                $this->name, $from, $from_name, $seotitle, $replace, $file,
+                isset($this->cf_language) ? $this->cf_language : NULL
+            );
         }
         return FALSE;
     }
