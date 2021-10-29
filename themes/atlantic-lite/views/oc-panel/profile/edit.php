@@ -14,6 +14,10 @@
             <?= View::factory('oc-panel/profile/_scrow-pay', compact('user')) ?>
         <? endif ?>
 
+        <? if (Core::config('advertisement.instagram') == 1) : ?>
+            <?= View::factory('oc-panel/profile/_instragram', compact('user')) ?>
+        <? endif ?>
+
         <? if(Core::config('general.google_authenticator') == TRUE): ?>
             <?= View::factory('oc-panel/profile/_google-authenticator', compact('user')) ?>
         <? endif ?>

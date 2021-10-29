@@ -155,6 +155,14 @@ class Controller_Panel_Integrations extends Auth_Controller {
                 'category' => '',
             ],
             [
+                'name' => 'instagram',
+                'config_name' => 'advertisement.instagram',
+                'label' => 'Instagram',
+                'description' => __('Show user\'s instagram feed on their listing page.'),
+                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/instagram.jpg',
+                'category' => '',
+            ],
+            [
                 'name' => 'logbee',
                 'config_name' => 'advertisement.logbee',
                 'label' => 'Logbee',

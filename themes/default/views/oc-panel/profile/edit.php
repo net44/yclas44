@@ -301,6 +301,31 @@
             </div>
         </div>
 
+        <? if (Core::config('advertisement.instagram') == 1) : ?>
+            <div class="panel panel-default">
+                <div class="panel-heading" id="page-edit-profile">
+                    <h3 class="panel-title"><?=_e('Instagram Connect')?></h3>
+                    <p><?= _e('Once connected, your instagram feed will be shown on your listing page.')?></p>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <?if ($user->instagram_token != ''):?>
+                                Instagram connected.
+                                <br><br>
+                                Reconnect:
+                                <br>
+                            <?endif?>
+
+                            <a class="btn btn-primary" href="<?= Instagram::loginUrl() ?>">
+                                <?= _e('Connect with Instagram') ?>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <? endif ?>
+
         <?if( Core::config('general.google_authenticator')==TRUE):?>
         <div class="panel panel-default">
             <div class="panel-heading" id="page-edit-profile">

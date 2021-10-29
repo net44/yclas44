@@ -38,12 +38,24 @@ class Controller_Panel_Update extends Auth_Controller
                 'group_name' => 'payment',
                 'config_value' => '',
             ],
+            [
+                'config_key' => 'instagram_app_id',
+                'group_name' => 'advertisement',
+                'config_value' => '',
+            ],
+            [
+                'config_key' => 'instagram_app_secret',
+                'group_name' => 'advertisement',
+                'config_value' => '',
+            ],
         ];
 
         Model_Config::config_array($configs);
 
         try {
             DB::query(Database::UPDATE, "ALTER TABLE `".self::$db_prefix."users` ADD `digest_interval` varchar(140) DEFAULT 'never'")->execute();
+            DB::query(Database::UPDATE, "ALTER TABLE `".self::$db_prefix."users` ADD `instagram_token` varchar(255) DEFAULT NULL")->execute();
+            DB::query(Database::UPDATE, "ALTER TABLE `".self::$db_prefix."users` ADD `instagram_token_expires_at` datetime DEFAULT NULL")->execute();
         } catch (exception $e) {}
 
         $contents = [
@@ -63,6 +75,7 @@ class Controller_Panel_Update extends Auth_Controller
         // Crontabs
         try {
             DB::query(Database::UPDATE, "INSERT INTO `".self::$db_prefix."crontab` (`name`, `period`, `callback`, `params`, `description`, `active`) VALUES
+                                    ('About to Expire Instagram Token', '0 12 * * *', 'Cron_Instagram::refreshUserTokens', NULL, 'Refresh user tokens two days before expiration date', 1),
                                     ('Dispatch Daily Digest', '0 7 * * *', 'Cron_Digestmail::dispatch_daily_digest', NULL, 'Dispatch Daily Digest at 07:00', 1),
                                     ('Dispatch Weekly Digest', '0 7 * * SAT', 'Cron_Digestmail::dispatch_weekly_digest', NULL, 'Dispatch Weekly Digest at 07:00 on Saturday', 1),
                                     ('Dispatch Monthly Digest', '0 7 1 * *', 'Cron_Digestmail::dispatch_monthly_digest', NULL, 'Dispatch Monthly Digest at 07:00 on day-of-month 1', 1);")->execute();
