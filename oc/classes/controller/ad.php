@@ -448,11 +448,6 @@ class Controller_Ad extends Controller {
 
                 $this->template->meta_description = $ad->title.' '.__('in').' '.$category->translate_name() .' '.__('on').' '.core::config('general.site_name');
 
-                if ($ad->instagram())
-                {
-                    $this->template->scripts['footer'][] = 'js/jquery.instagramFeed.min.js';
-                }
-
 				$permission = TRUE; //permission to add hit to advert and give access rights.
 				$auth_user = Auth::instance();
                 if(!$auth_user->logged_in() OR
