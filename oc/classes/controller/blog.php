@@ -88,24 +88,42 @@ class Controller_Blog extends Controller {
      */
     public function action_view($seotitle)
     {
-
         $post = new Model_Post();
 
         // if visitor or user with ROLE_USER display post with STATUS_ACTIVE
         if (! Auth::instance()->logged_in() OR
             (Auth::instance()->logged_in() AND Auth::instance()->get_user()->id_role == Model_Role::ROLE_USER))
+        {
             $post->where('status','=',Model_Post::STATUS_ACTIVE);
+        }
 
-        $post->where('seotitle','=',$seotitle)
-            ->where('id_forum','IS',NULL)
-            ->cached()->limit(1)->find();
+        $post->where('seotitle', '=', $seotitle)
+            ->where('id_forum', 'IS', NULL);
+
+        if (Core::config('general.multilingual'))
+        {
+            $post->where('locale', '=', i18n::$locale);
+        }
+
+        $post = $post->cached()->limit(1)->find();
+
+        // was not found try default locale
+        if (Core::config('general.multilingual') AND ! $post->loaded())
+        {
+            $post = $post->where('seotitle', '=', $seotitle)
+                 ->where('locale', '=', i18n::$locale_default)
+                 ->where('id_forum', 'IS', NULL)
+                 ->limit(1)
+                 ->cached()
+                 ->find();
+        }
 
         if ($post->loaded())
         {
             Breadcrumbs::add(Breadcrumb::factory()->set_title($post->title));
 
             if ($post->status == 0)
-                    Alert::set(Alert::ALERT, __('Blog post unpublished.'));
+                Alert::set(Alert::ALERT, __('Blog post unpublished.'));
 
             $this->template->title            = $post->title;
             $this->template->meta_description = $post->description;
