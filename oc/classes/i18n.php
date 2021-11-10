@@ -55,7 +55,10 @@ class I18n extends Kohana_I18n {
             {
                 $locale = Auth::instance()->get_user()->cf_language;
             }
-            elseif (Core::config('general.multilingual') AND key(Request::accept_lang()) !== NULL)
+            elseif (Core::config('general.multilingual') AND
+                Core::config('general.multilingual_detect_browser_language') AND
+                key(Request::accept_lang()) !== NULL
+            )
             {
                 $locale = array_key_first(self::get_selectable_languages());
                 $browser_locale = substr(key(Request::accept_lang()), 0, 2);
