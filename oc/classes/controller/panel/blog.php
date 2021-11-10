@@ -19,9 +19,16 @@ class Controller_Panel_Blog extends Auth_Crud {
      */
     public function action_index($view = NULL)
     {
+        $locale = Core::get('locale', core::config('i18n.locale'));
+
         $this->template->title = __('Blog');
 
         $posts = (new Model_Post())->where('id_forum', 'IS', NULL);
+
+        if (Core::config('general.multilingual') AND $locale !== 'all')
+        {
+            $posts->where('locale', '=', $locale);
+        }
 
         $pagination = Pagination::factory([
             'view' => 'oc-panel/crud/pagination',
@@ -41,6 +48,8 @@ class Controller_Panel_Blog extends Auth_Crud {
 
         return $this->render('oc-panel/pages/blog/index', [
             'posts' => $posts,
+            'locales' => i18n::get_selectable_languages(),
+            'locale' => $locale,
             'pagination'=> $pagination->render()
         ]);
     }
@@ -51,32 +60,38 @@ class Controller_Panel_Blog extends Auth_Crud {
      */
     public function action_create()
     {
-        $post = new FormOrm('post');
+        $post = new Model_Post();
+        $locale = Core::get('locale', core::config('i18n.locale'));
 
-        if ($this->request->post())
+        if($this->request->post())
         {
-            $post->submit();
+            $post->title = Core::post('title');
+            $post->locale = Core::post('locale');
+            $post->seotitle = Core::post('seotitle') ?? $post->gen_seotitle(Core::post('title'));
+            $post->description = Kohana::$_POST_ORIG['description'];
+            $post->status = Core::post('status') ?? 0;
 
-            if ($post->submit_status() == FormOrm::SUBMIT_STATUS_SUCCESS)
+            try
             {
-                $post->object->description = Kohana::$_POST_ORIG['formorm']['description'];
-                $post->save_object();
+                $post->save();
 
                 Alert::set(Alert::SUCCESS, __('Blog post created').'. '.__('Please to see the changes delete the cache')
-                    .'<br><a class="btn btn-primary btn-mini ajax-load" href="'.Route::url('oc-panel',array('controller'=>'tools','action'=>'cache')).'?force=1" title="'.__('Delete All').'">'
-                    .__('Delete All').'</a>');
-
-                $this->redirect(Route::get('oc-panel')->uri(['controller' => 'Blog']));
+                    .'<br><a class="btn btn-primary btn-mini" href="'.Route::url('oc-panel',array('controller'=>'tools','action'=>'cache')).'?force=1">'
+                    .__('Delete cache').'</a>');
             }
-            else
+            catch (Exception $e)
             {
-                Alert::set(Alert::ERROR, __('Check form for errors'));
+                Alert::set(Alert::ERROR, $e->getMessage());
             }
+
+            HTTP::redirect(Route::url('oc-panel', ['controller' => 'blog']) . '?locale=' . $locale);
         }
 
-        $this->template->title = __('New blog post');
-
-        return $this->render('oc-panel/pages/blog/create', ['form_fields' => $post->fields]);
+        $this->template->content = View::factory('oc-panel/pages/blog/create', [
+            'post' => $post,
+            'locale' => $locale,
+            'locales' => i18n::get_selectable_languages(),
+        ]);
     }
 
 
@@ -85,32 +100,44 @@ class Controller_Panel_Blog extends Auth_Crud {
      */
     public function action_update()
     {
-        $post = new FormOrm('post', $this->request->param('id'));
+        $post = new Model_Post($this->request->param('id'));
 
-        if ($this->request->post())
+        if (! $post->loaded())
         {
-            $post->submit();
-
-            if ($post->submit_status() == FormOrm::SUBMIT_STATUS_SUCCESS)
-            {
-                $post->object->description = Kohana::$_POST_ORIG['formorm']['description'];
-                $post->save_object();
-
-                Alert::set(Alert::SUCCESS, __('Blog post updated').'. '.__('Please to see the changes delete the cache')
-                    .'<br><a class="btn btn-primary btn-mini ajax-load" href="'.Route::url('oc-panel',array('controller'=>'tools','action'=>'cache')).'?force=1" title="'.__('Delete All').'">'
-                    .__('Delete All').'</a>');
-
-                $this->redirect(Route::get('oc-panel')->uri(['controller' => 'Blog']));
-            }
-            else
-            {
-                Alert::set(Alert::ERROR, __('Check form for errors'));
-            }
+            throw HTTP_Exception::factory(404, __('Page not found'));
         }
 
-        $this->template->title = __('Update blog post');
+        if($this->request->post())
+        {
+            $post->locale = Core::post('locale');
+            $post->title = Core::post('title');
+            $post->description = Kohana::$_POST_ORIG['description'];
+            $post->seotitle = Core::post('seotitle');
+            $post->status = Core::post('status') ?? 0;
 
-        return $this->render('oc-panel/pages/blog/update', ['post' => $post->object, 'form_fields' => $post->fields]);
+            try
+            {
+                $post->save();
+
+                Alert::set(Alert::SUCCESS, __('Blog post updated'));
+            }
+            catch (Exception $e)
+            {
+                Alert::set(Alert::ERROR, $e->getMessage());
+            }
+
+            HTTP::redirect(Route::url('oc-panel', [
+                'controller' => 'blog',
+                'action' => 'update',
+                'id' => $post->id_post
+            ]));
+        }
+
+        $this->template->content = View::factory('oc-panel/pages/blog/update', [
+            'post' => $post,
+            'locale' => $post->locale,
+            'locales' => i18n::get_selectable_languages(),
+        ]);
     }
 
     public function action_delete()

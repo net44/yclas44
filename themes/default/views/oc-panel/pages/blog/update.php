@@ -9,8 +9,8 @@
 </div>
 
 <div class="mt-8">
-    <?= FORM::open(Route::url('oc-panel', ['controller' => 'blog', 'action' => 'update']), ['enctype' => 'multipart/form-data']) ?>
-        <?= View::factory('oc-panel/pages/blog/_form', ['form_fields' => $form_fields]) ?>
+    <?= FORM::open(Route::url('oc-panel', ['controller' => 'blog', 'action' => 'update', 'id' => $post->id_post]), ['enctype' => 'multipart/form-data']) ?>
+        <?= View::factory('oc-panel/pages/blog/_form', ['post' => $post, 'locale' => $locale, 'locales' => $locales]) ?>
     <?= FORM::close() ?>
 </div>
 

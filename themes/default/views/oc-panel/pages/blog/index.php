@@ -11,6 +11,13 @@
         </div>
     </div>
     <div class="mt-4 flex md:mt-0 md:ml-4">
+        <? if (Core::config('general.multilingual')) : ?>
+            <span class="shadow-sm rounded-md">
+                <?= FORM::open(Route::url('oc-panel', ['controller'=>'blog']), ['method' => 'GET', 'x-data' => ''])?>
+                    <?= FORM::select('locale', ['all' => __('All')] + $locales, $locale, ['x-on:change' => '$el.submit()', 'class' => 'block form-select w-24 py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5'])?>
+                <?= FORM::close()?>
+            </span>
+        <? endif ?>
         <span class="ml-3 shadow-sm rounded-md">
             <a href="<?=Route::url($route, ['controller'=> Request::current()->controller(), 'action'=>'create']) ?>" title="<?=__('New')?>" class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-700 active:bg-blue-700 transition duration-150 ease-in-out">
                 <?= __('New blog post') ?>
@@ -28,11 +35,6 @@
                         <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                             <?= __('Title') ?>
                         </th>
-                        <? if (Core::config('general.multilingual')) : ?>
-                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                <?= __('Locale') ?>
-                            </th>
-                        <? endif ?>
                         <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                             <?= __('Status') ?>
                         </th>

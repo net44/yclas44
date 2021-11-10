@@ -254,7 +254,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `locale` varchar(5) DEFAULT NULL,
   PRIMARY KEY (`id_post`) USING BTREE,
-  UNIQUE KEY `".core::request('TABLE_PREFIX')."posts_UK_seotitle` (`seotitle`),
+  UNIQUE KEY `".core::request('TABLE_PREFIX')."posts_UK_locale_AND_seotitle` (`locale`,`seotitle`),
   KEY `".core::request('TABLE_PREFIX')."posts_IK_id_user` (`id_user`),
   KEY `".core::request('TABLE_PREFIX')."posts_IK_id_post_parent` (`id_post_parent`),
   KEY `".core::request('TABLE_PREFIX')."posts_IK_id_forum` (`id_forum`)

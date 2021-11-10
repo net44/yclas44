@@ -1,42 +1,41 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-<?= FORM::hidden($form_fields['id_post']['field_name'], $form_fields['id_post']['value'])?>
-<?= FORM::hidden($form_fields['id_user']['field_name'], $form_fields['id_user']['value'])?>
-<?= FORM::hidden($form_fields['seotitle']['field_name'], $form_fields['seotitle']['value'])?>
-
 <div class="shadow sm:rounded-md sm:overflow-hidden">
     <div class="px-4 py-5 bg-white sm:p-6">
         <div class="grid grid-cols-3 gap-6">
             <div class="col-span-3 sm:col-span-2">
-                <?=FORM::label($form_fields['title']['field_id'], __('Title'), ['class' => 'block text-sm font-medium leading-5 text-gray-700', 'for' => $form_fields['title']['field_id']])?>
-                <?=FORM::input($form_fields['title']['field_name'], $form_fields['title']['value'], ['placeholder' => __('Title'), 'class' => 'mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5', 'id' => $form_fields['title']['field_id'], 'required'])?>
+                <?=FORM::label('title', __('Title'), ['class' => 'block text-sm font-medium leading-5 text-gray-700', 'for' => 'title'])?>
+                <?=FORM::input('title', $post->title, ['placeholder' => __('Title'), 'class' => 'mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5', 'required'])?>
             </div>
             <? if (Core::config('general.multilingual')) : ?>
                 <div class="col-span-3 sm:col-span-2">
-                    <?=FORM::label($form_fields['locale']['field_id'], __('Locale'), ['class' => 'block text-sm font-medium leading-5 text-gray-700', 'for' => $form_fields['locale']['field_id']])?>
-                    <?=FORM::select($form_fields['locale']['field_name'], i18n::get_selectable_languages(), $form_fields['locale']['value'], ['class' => 'mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5', 'required'])?>
+                    <?=FORM::label('locale', __('Locale'), ['class' => 'block text-sm font-medium leading-5 text-gray-700', 'for' => 'locale'])?>
+                    <?=FORM::select('locale', $locales, $post->locale ?? $locale, ['class' => 'mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5', 'required'])?>
                 </div>
             <? endif ?>
             <div class="col-span-3">
-                <?=FORM::label($form_fields['description']['field_id'], __('Description'), ['class'=>'block text-sm leading-5 font-medium text-gray-700', 'for'=>$form_fields['description']['field_id']])?>
+                <?=FORM::label('description', __('Description'), ['class'=>'block text-sm leading-5 font-medium text-gray-700', 'for'=>'description'])?>
                 <div class="rounded-md shadow-sm">
-                    <?= Form::textarea($form_fields['description']['field_name'], $form_fields['description']['value'], [
-                        'class'=>'form-textarea mt-1 block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
-                        'id' => $form_fields['description']['field_id'],
+                    <?=FORM::textarea('description', $post->description, [
                         'x-data' => '',
                         'x-init' => '$($refs.textarea).summernote(summernoteSettings())',
                         'x-ref' => 'textarea',
-                        'placeholder'=>__('Description')
-                    ]) ?>
+                        'class' => 'form-textarea mt-1 block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
+                        'placeholder'=>__('Description'),
+                    ])?>
                 </div>
+            </div>
+            <div class="col-span-3 sm:col-span-2">
+                <?=FORM::label('seotitle', __('SEO title'), ['class' => 'block text-sm font-medium leading-5 text-gray-700', 'for' => 'seotitle'])?>
+                <?=FORM::input('seotitle', $post->seotitle, ['placeholder' => __('SEO title'), 'class' => 'mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5'])?>
             </div>
             <div class="col-span-3">
                 <div class="flex items-start">
                     <div class="absolute flex items-center h-5">
-                        <?=FORM::checkbox($form_fields['status']['field_name'], 1, (bool) $form_fields['status']['value'], ['class' => 'form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out'])?>
+                        <?=FORM::checkbox('status', 1, (bool) $post->status, ['class' => 'form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out'])?>
                     </div>
                     <div class="pl-7 text-sm leading-5">
-                        <?=FORM::label($form_fields['status']['field_id'], __('Status'), ['class'=>'font-medium text-gray-700', 'for'=>$form_fields['status']['field_id']])?>
+                        <?=FORM::label('status', __('Status'), ['class'=>'font-medium text-gray-700', 'for'=>'status'])?>
                     </div>
                 </div>
             </div>

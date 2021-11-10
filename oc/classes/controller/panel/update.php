@@ -84,6 +84,16 @@ class Controller_Panel_Update extends Auth_Controller
         try {
             DB::query(Database::UPDATE, "ALTER TABLE `".self::$db_prefix."posts` ADD `locale` varchar(5) DEFAULT NULL")->execute();
         } catch (exception $e) {}
+
+        try {
+            DB::query(Database::UPDATE, "ALTER TABLE `".self::$db_prefix."posts` DROP INDEX ".self::$db_prefix."posts_UK_seotitle")->execute();
+        } catch (exception $e) {
+        }
+
+        try {
+            DB::query(Database::UPDATE, "ALTER TABLE `".self::$db_prefix."posts` ADD UNIQUE KEY ".self::$db_prefix."posts_UK_locale_AND_seotitle (`locale`, `seotitle`)")->execute();
+        } catch (exception $e) {
+        }
     }
 
     public function action_430()

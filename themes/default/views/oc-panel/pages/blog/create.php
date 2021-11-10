@@ -10,6 +10,6 @@
 
 <div class="mt-8">
     <?= FORM::open(Route::url('oc-panel', ['controller' => 'blog', 'action' => 'create']), ['enctype' => 'multipart/form-data']) ?>
-        <?= View::factory('oc-panel/pages/blog/_form', ['form_fields' => $form_fields]) ?>
+        <?= View::factory('oc-panel/pages/blog/_form', ['post' => $post, 'locale' => $locale, 'locales' => $locales]) ?>
     <?= FORM::close() ?>
 </div>
