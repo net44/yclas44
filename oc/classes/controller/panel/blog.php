@@ -65,6 +65,7 @@ class Controller_Panel_Blog extends Auth_Crud {
 
         if($this->request->post())
         {
+            $post->id_user = $this->user->id_user;
             $post->title = Core::post('title');
             $post->locale = Core::post('locale');
             $post->seotitle = Core::post('seotitle') ?? $post->gen_seotitle(Core::post('title'));
