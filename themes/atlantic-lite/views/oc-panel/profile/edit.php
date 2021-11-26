@@ -15,7 +15,7 @@
         <? endif ?>
 
         <? if (Core::config('advertisement.instagram') == 1) : ?>
-            <?= View::factory('oc-panel/profile/_instragram', compact('user')) ?>
+            <?= View::factory('oc-panel/profile/_instagram', compact('user')) ?>
         <? endif ?>
 
         <? if(Core::config('general.google_authenticator') == TRUE): ?>
