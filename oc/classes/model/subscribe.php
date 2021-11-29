@@ -67,40 +67,60 @@ class Model_Subscribe extends ORM {
         //filter by category, 0 means all the cats, in case was not set
         $subscribers->where('id_category', 'in', array($ad->id_category,0));
 
-        $subscribers = $subscribers->order_by('id_user', 'ASC')
-            ->execute()
-            ->as_array(NULL, 'id_user');
+        $subscribers = $subscribers->order_by('id_user', 'ASC')->execute()->as_array(NULL, 'id_user');
 
-        // query for getting users, transform it to array and pass to email function
-        if(core::count($subscribers) > 0)
+        if(core::count($subscribers) === 0)
         {
-            $users = DB::select('email')->select('name')
-                        ->from('users')
-                        ->where('id_user', 'IN', $subscribers)
-                        ->where('status','=',Model_User::STATUS_ACTIVE)
-                        ->where('subscriber','=',1)
-                        ->execute();
-
-            $users = $users->as_array();
-
-            // Send mails like in newsletter, to multiple users simultaneously
-            if (core::count($users)>0)
-            {
-
-                $url_ad = Route::url('ad', array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle));
-
-                $replace = array('[URL.AD]'        =>$url_ad,
-                                 '[AD.TITLE]'      =>$ad->title);
-
-                Email::content($users,'',
-                                    core::config('email.notify_email'),
-                                    core::config('general.site_name'),
-                                    'ads-subscribers',
-                                    $replace);
-
-            }
+            return;
         }
 
+        if (Core::config('general.multilingual'))
+        {
+            foreach (i18n::get_selectable_languages() as $locale => $language)
+            {
+                self::send_ads_subscribers_email_to_subscribers($subscribers, $ad, $locale);
+            }
+
+            return;
+        }
+
+        return self::send_ads_subscribers_email_to_subscribers($subscribers, $ad);
+    }
+
+    public static function send_ads_subscribers_email_to_subscribers($subscribers, Model_Ad $ad, $locale = NULL)
+    {
+        $users = DB::select('email')
+            ->select('name')
+            ->from('users')
+            ->where('id_user', 'IN', $subscribers)
+            ->where('status', '=', Model_User::STATUS_ACTIVE)
+            ->where('subscriber', '=', 1);
+
+        if ($locale AND isset(Model_UserField::get_all()['language']))
+        {
+            $users->where('cf_language', '=', $locale);
+        }
+
+        $users = $users->execute()->as_array();
+
+        if (core::count($users) === 0)
+        {
+            return;
+        }
+
+        $url_ad = Route::url('ad', ['category' => $ad->category->seoname, 'seotitle' => $ad->seotitle]);
+
+        $replace = ['[URL.AD]' => $url_ad, '[AD.TITLE]' => $ad->title];
+
+        Email::content(
+            $users,'',
+            core::config('email.notify_email'),
+            core::config('general.site_name'),
+            'ads-subscribers',
+            $replace,
+            NULL,
+            $locale
+        );
     }
 
 
