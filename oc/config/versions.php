@@ -1,10 +1,10 @@
 <?php defined('SYSPATH') or die('No direct script access.');
-                return array (
+return array (
   '4.3.0' => 
   array (
     'codename' => 'Atropos',
     'released' => '2021-07-07',
-    'blog' => '',
+    'blog' => 'https://yclas.com/blog/yclas-self-hosted-4-3.html',
     'changelog' => 'https://github.com/yclas/yclas/compare/4.2.0...4.3.0',
     'issues' => 'https://github.com/yclas/yclas/milestone/47?closed=1',
     'download' => 'https://j.mp/yc_430',
@@ -13,7 +13,7 @@
   array (
     'codename' => 'Ananke',
     'released' => '2021-05-13',
-    'blog' => '',
+    'blog' => 'https://yclas.com/blog/yclas-self-hosted-4-2.html',
     'changelog' => 'https://github.com/yclas/yclas/compare/4.1.0...4.2.0',
     'issues' => 'https://github.com/yclas/yclas/milestone/46?closed=1',
     'download' => 'https://j.mp/yc_420',
@@ -22,7 +22,7 @@
   array (
     'codename' => 'Aether',
     'released' => '2021-01-19',
-    'blog' => '',
+    'blog' => 'https://yclas.com/blog/yclas-self-hosted-4-1.html',
     'changelog' => 'https://github.com/yclas/yclas/compare/4.0.2...4.1.0',
     'issues' => 'https://github.com/yclas/yclas/milestone/45?closed=1',
     'download' => 'https://j.mp/yc_410',
@@ -31,7 +31,7 @@
   array (
     'codename' => 'ReReErebus',
     'released' => '2020-09-03',
-    'blog' => '',
+    'blog' => 'https://github.com/yclas/yclas/releases/tag/4.0.2',
     'changelog' => 'https://github.com/yclas/yclas/compare/4.0.1...4.0.2',
     'issues' => 'https://github.com/yclas/yclas/milestone/42?closed=1',
     'download' => 'https://j.mp/yc_402',
@@ -40,7 +40,7 @@
   array (
     'codename' => 'ReErebus',
     'released' => '2020-07-25',
-    'blog' => '',
+    'blog' => 'https://github.com/yclas/yclas/releases/tag/4.0.1',
     'changelog' => 'https://github.com/yclas/yclas/compare/4.0.0...4.0.1',
     'issues' => 'https://github.com/yclas/yclas/milestone/42?closed=1',
     'download' => 'https://j.mp/yc_401',
@@ -49,7 +49,7 @@
   array (
     'codename' => 'Erebus',
     'released' => '2020-07-21',
-    'blog' => '',
+    'blog' => 'https://yclas.com/blog/new-theme-and-new-panel-for-your-yclas-website.html',
     'changelog' => 'https://github.com/yclas/yclas/compare/3.8.0...4.0.0',
     'issues' => 'https://github.com/yclas/yclas/milestone/42?closed=1',
     'download' => 'https://j.mp/yc_400',
@@ -58,7 +58,7 @@
   array (
     'codename' => 'Carnival',
     'released' => '2020-02-13',
-    'blog' => '',
+    'blog' => 'https://github.com/yclas/yclas/releases/tag/3.8.0',
     'changelog' => 'https://github.com/yclas/yclas/compare/3.7.0...3.8.0',
     'issues' => 'https://github.com/yclas/yclas/milestone/44?closed=1',
     'download' => 'https://j.mp/yc_380',
@@ -67,7 +67,7 @@
   array (
     'codename' => 'Malkoha',
     'released' => '2019-08-29',
-    'blog' => '',
+    'blog' => 'https://github.com/yclas/yclas/releases/tag/3.7.0',
     'changelog' => 'https://github.com/yclas/yclas/compare/3.6.0...3.7.0',
     'issues' => 'https://github.com/yclas/yclas/milestone/43?closed=1',
     'download' => 'https://j.mp/yc_370',
@@ -76,7 +76,7 @@
   array (
     'codename' => 'Cuckoo',
     'released' => '2019-02-05',
-    'blog' => '',
+    'blog' => 'https://github.com/yclas/yclas/releases/tag/3.6.0',
     'changelog' => 'https://github.com/yclas/yclas/compare/3.5.0...3.6.0',
     'issues' => 'https://github.com/yclas/yclas/milestone/41?closed=1',
     'download' => 'https://j.mp/yc_360',
@@ -85,7 +85,7 @@
   array (
     'codename' => 'Quetzal',
     'released' => '2018-07-18',
-    'blog' => '',
+    'blog' => 'https://github.com/yclas/yclas/releases/tag/3.5.0',
     'changelog' => 'https://github.com/yclas/yclas/compare/3.4.0...3.5.0',
     'issues' => 'https://github.com/yclas/yclas/milestone/40?closed=1',
     'download' => 'https://j.mp/yc_350',
@@ -94,7 +94,7 @@
   array (
     'codename' => 'Valentines',
     'released' => '2018-02-14',
-    'blog' => '',
+    'blog' => 'https://github.com/yclas/yclas/releases/tag/3.4.0',
     'changelog' => 'https://github.com/yclas/yclas/compare/3.3.0...3.4.0',
     'issues' => 'https://github.com/yclas/yclas/milestone/39?closed=1',
     'download' => 'https://j.mp/yc_340',
@@ -103,7 +103,7 @@
   array (
     'codename' => 'Barcelona',
     'released' => '2017-09-04',
-    'blog' => '',
+    'blog' => 'https://github.com/yclas/yclas/releases/tag/3.3.0',
     'changelog' => 'https://github.com/yclas/yclas/compare/3.2.0...3.3.0',
     'issues' => 'https://github.com/yclas/yclas/milestone/38?closed=1',
     'download' => 'https://j.mp/yc_330',
@@ -112,7 +112,7 @@
   array (
     'codename' => 'Vilnius',
     'released' => '2017-03-28',
-    'blog' => '',
+    'blog' => 'https://github.com/yclas/yclas/releases/tag/3.2.0',
     'changelog' => 'https://github.com/yclas/yclas/compare/3.1.0...3.2.0',
     'issues' => 'https://github.com/yclas/yclas/milestone/37?closed=1',
     'download' => 'https://j.mp/yc_320',
@@ -121,7 +121,7 @@
   array (
     'codename' => 'Riga',
     'released' => '2016-12-28',
-    'blog' => '',
+    'blog' => 'https://github.com/yclas/yclas/releases/tag/3.1.0',
     'changelog' => 'https://github.com/yclas/yclas/compare/3.0.0...3.1.0',
     'issues' => 'https://github.com/yclas/yclas/milestone/36?closed=1',
     'download' => 'https://j.mp/yc_310',
