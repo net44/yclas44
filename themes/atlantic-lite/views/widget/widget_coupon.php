@@ -16,7 +16,12 @@
 
                     <p>
                         <?= sprintf(__('Discount off %s'), (Model_Coupon::current()->discount_amount==0)?round(Model_Coupon::current()->discount_percentage,0).'%':i18n::money_format((Model_Coupon::current()->discount_amount)))?><br>
-                        <?= sprintf(__('%s coupons left'), Model_Coupon::current()->number_coupons)?>, <?=sprintf(__('valid until %s'), Date::format(Model_Coupon::current()->valid_date, core::config('general.date_format')))?>.
+                        <? $coupons_left = Model_Coupon::current()->number_coupons - 1 ?>
+                        <? if ($coupons_left == 1) : ?>
+                            <?=sprintf(__('%s coupon left'), $coupons_left)?>, <?=sprintf(__('valid until %s'), Date::format(Model_Coupon::current()->valid_date, core::config('general.date_format')))?>.
+                        <? else : ?>
+                            <?=sprintf(__('%s coupons left'), $coupons_left)?>, <?=sprintf(__('valid until %s'), Date::format(Model_Coupon::current()->valid_date, core::config('general.date_format')))?>.
+                        <? endif ?>
                         <? if(Model_Coupon::current()->id_product!=NULL): ?>
                             <?= sprintf(__('only valid for %s'), Model_Order::product_desc(Model_Coupon::current()->id_product)) ?>
                         <? endif ?>

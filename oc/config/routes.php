@@ -44,6 +44,16 @@ Route::set('offline', 'offline.html')
         'action'     => 'offline',
 ));
 
+/**
+ * Item / post new
+ * URL::title(__('publish new'))
+ */
+Route::set('static_post_new', 'publish-new.html')
+->defaults(array(
+        'controller' => 'new',
+        'action'     => 'index',
+));
+
 Route::set('post_new', URL::title(__('publish new')).'.html')
 ->defaults(array(
 		'controller' => 'new',
