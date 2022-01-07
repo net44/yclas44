@@ -11,7 +11,6 @@
 		<span class='st_twitter_large' displayText='Tweet'></span>
 		<span class='st_linkedin_large' displayText='LinkedIn'></span>
 		<span class='st_pinterest_large' displayText='Pinterest'></span>
-		<span class='st_googleplus_large' displayText='Google +'></span>
 		<span class='st_vkontakte_large' displayText='Vkontakte'></span>
 		<span class='st_odnoklassniki_large' displayText='Odnoklassniki'></span>
 		<span class='st_tumblr_large' displayText='Tumblr'></span>
@@ -29,7 +28,6 @@
 			<?if(!strcmp(trim($value),'tweet')):?><span class='st_twitter_large' displayText='Tweet'></span><?endif?>
 			<?if(!strcmp(trim($value),'linkedin')):?><span class='st_linkedin_large' displayText='LinkedIn'></span><?endif?>
 			<?if(!strcmp(trim($value),'pinterest')):?><span class='st_pinterest_large' displayText='Pinterest'></span><?endif?>
-			<?if(!strcmp(trim($value),'googleplus')):?><span class='st_googleplus_large' displayText='Google +'></span><?endif?>
 			<?if(!strcmp(trim($value),'vkontakte')):?><span class='st_vkontakte_large' displayText='Vkontakte'></span><?endif?>
 			<?if(!strcmp(trim($value),'odnoklassniki')):?><span class='st_odnoklassniki_large' displayText='Odnoklassniki'></span><?endif?>
 			<?if(!strcmp(trim($value),'tumblr')):?><span class='st_tumblr_large' displayText='Tumblr'></span><?endif?>

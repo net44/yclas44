@@ -203,7 +203,6 @@ $I->seeElement('.st_facebook_large');
 $I->seeElement('.st_twitter_large');
 $I->seeElement('.st_linkedin_large');
 $I->seeElement('.st_pinterest_large');
-$I->seeElement('.st_googleplus_large');
 $I->seeElement('.st_email_large');
 $I->seeElement('.st_print_large');
 
@@ -219,7 +218,6 @@ $I->dontSeeElement('.st_facebook_large');
 $I->dontSeeElement('.st_twitter_large');
 $I->dontSeeElement('.st_linkedin_large');
 $I->dontSeeElement('.st_pinterest_large');
-$I->dontSeeElement('.st_googleplus_large');
 $I->dontSeeElement('.st_email_large');
 $I->dontSeeElement('.st_print_large');
 
