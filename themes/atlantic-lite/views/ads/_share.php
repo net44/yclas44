@@ -3,7 +3,6 @@
 <span class='st_twitter_large' displayText='Tweet'></span>
 <span class='st_linkedin_large' displayText='LinkedIn'></span>
 <span class='st_pinterest_large' displayText='Pinterest'></span>
-<span class='st_googleplus_large' displayText='Google +'></span>
 <span class='st_vkontakte_large' displayText='Vkontakte'></span>
 <span class='st_odnoklassniki_large' displayText='Odnoklassniki'></span>
 <span class='st_email_large' displayText='Email'></span>
