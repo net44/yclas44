@@ -57,6 +57,14 @@ $(function(){
             $(this).select2('destroy');
         }
     });
+    //enable select2 on modal register
+    $('#register-modal').on('shown.bs.modal', function (e) {
+        $('#register-modal select').select2('destroy').select2({
+            theme: 'bootstrap4',
+            width: 'style',
+            language: 'es',
+        });
+    });
     // Location fuzzy search
     $('.ajax-location-search').each(function(){
         $(this).select2('destroy').select2({

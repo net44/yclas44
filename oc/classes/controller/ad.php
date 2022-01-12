@@ -563,14 +563,11 @@ class Controller_Ad extends Controller {
                         $this->redirect(Route::url('ad-review',array('seotitle'=>$ad->seotitle)));
                     }
 
-                    $review = new Model_Review();
-                    $review->where('id_ad','=',$ad->id_ad)
-                            ->where_open()
-                            ->or_where('id_user','=',$user->id_user)
-                            ->or_where('ip_address','=',ip2long(Request::$client_ip))
-                            ->where_close()
-                            ->find();
-                            //d($review);
+                    $review = (new Model_Review())
+                        ->where('id_ad', '=', $ad->id_ad)
+                        ->where('id_user', '=', $user->id_user)
+                        ->find();
+
                     if (!$review->loaded())
                     {
                         if (captcha::check('review'))
