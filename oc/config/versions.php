@@ -1,6 +1,15 @@
 <?php defined('SYSPATH') or die('No direct script access.');
                 return array (
-  '4.3.0' => 
+  '4.4.0' =>
+  array (
+    'codename' => 'Phanes',
+    'released' => '2022-01-12',
+    'blog' => 'https://github.com/yclas/yclas/releases/tag/4.4.0',
+    'changelog' => 'https://github.com/yclas/yclas/compare/4.3.0...4.4.0',
+    'issues' => 'https://github.com/yclas/yclas/milestone/48?closed=1',
+    'download' => 'https://j.mp/yc_440',
+  ),
+  '4.3.0' =>
   array (
     'codename' => 'Atropos',
     'released' => '2021-07-07',
@@ -9,7 +18,7 @@
     'issues' => 'https://github.com/yclas/yclas/milestone/47?closed=1',
     'download' => 'https://j.mp/yc_430',
   ),
-  '4.2.0' => 
+  '4.2.0' =>
   array (
     'codename' => 'Ananke',
     'released' => '2021-05-13',
@@ -18,7 +27,7 @@
     'issues' => 'https://github.com/yclas/yclas/milestone/46?closed=1',
     'download' => 'https://j.mp/yc_420',
   ),
-  '4.1.0' => 
+  '4.1.0' =>
   array (
     'codename' => 'Aether',
     'released' => '2021-01-19',
@@ -27,7 +36,7 @@
     'issues' => 'https://github.com/yclas/yclas/milestone/45?closed=1',
     'download' => 'https://j.mp/yc_410',
   ),
-  '4.0.2' => 
+  '4.0.2' =>
   array (
     'codename' => 'ReReErebus',
     'released' => '2020-09-03',
@@ -36,7 +45,7 @@
     'issues' => 'https://github.com/yclas/yclas/milestone/42?closed=1',
     'download' => 'https://j.mp/yc_402',
   ),
-  '4.0.1' => 
+  '4.0.1' =>
   array (
     'codename' => 'ReErebus',
     'released' => '2020-07-25',
@@ -45,7 +54,7 @@
     'issues' => 'https://github.com/yclas/yclas/milestone/42?closed=1',
     'download' => 'https://j.mp/yc_401',
   ),
-  '4.0.0' => 
+  '4.0.0' =>
   array (
     'codename' => 'Erebus',
     'released' => '2020-07-21',
@@ -54,7 +63,7 @@
     'issues' => 'https://github.com/yclas/yclas/milestone/42?closed=1',
     'download' => 'https://j.mp/yc_400',
   ),
-  '3.8.0' => 
+  '3.8.0' =>
   array (
     'codename' => 'Carnival',
     'released' => '2020-02-13',
@@ -63,7 +72,7 @@
     'issues' => 'https://github.com/yclas/yclas/milestone/44?closed=1',
     'download' => 'https://j.mp/yc_380',
   ),
-  '3.7.0' => 
+  '3.7.0' =>
   array (
     'codename' => 'Malkoha',
     'released' => '2019-08-29',
@@ -72,7 +81,7 @@
     'issues' => 'https://github.com/yclas/yclas/milestone/43?closed=1',
     'download' => 'https://j.mp/yc_370',
   ),
-  '3.6.0' => 
+  '3.6.0' =>
   array (
     'codename' => 'Cuckoo',
     'released' => '2019-02-05',
@@ -81,7 +90,7 @@
     'issues' => 'https://github.com/yclas/yclas/milestone/41?closed=1',
     'download' => 'https://j.mp/yc_360',
   ),
-  '3.5.0' => 
+  '3.5.0' =>
   array (
     'codename' => 'Quetzal',
     'released' => '2018-07-18',
@@ -90,7 +99,7 @@
     'issues' => 'https://github.com/yclas/yclas/milestone/40?closed=1',
     'download' => 'https://j.mp/yc_350',
   ),
-  '3.4.0' => 
+  '3.4.0' =>
   array (
     'codename' => 'Valentines',
     'released' => '2018-02-14',
@@ -99,7 +108,7 @@
     'issues' => 'https://github.com/yclas/yclas/milestone/39?closed=1',
     'download' => 'https://j.mp/yc_340',
   ),
-  '3.3.0' => 
+  '3.3.0' =>
   array (
     'codename' => 'Barcelona',
     'released' => '2017-09-04',
@@ -108,7 +117,7 @@
     'issues' => 'https://github.com/yclas/yclas/milestone/38?closed=1',
     'download' => 'https://j.mp/yc_330',
   ),
-  '3.2.0' => 
+  '3.2.0' =>
   array (
     'codename' => 'Vilnius',
     'released' => '2017-03-28',
@@ -117,7 +126,7 @@
     'issues' => 'https://github.com/yclas/yclas/milestone/37?closed=1',
     'download' => 'https://j.mp/yc_320',
   ),
-  '3.1.0' => 
+  '3.1.0' =>
   array (
     'codename' => 'Riga',
     'released' => '2016-12-28',
@@ -126,7 +135,7 @@
     'issues' => 'https://github.com/yclas/yclas/milestone/36?closed=1',
     'download' => 'https://j.mp/yc_310',
   ),
-  '3.0.0' => 
+  '3.0.0' =>
   array (
     'codename' => 'Kiev',
     'released' => '2016-11-10',
@@ -135,7 +144,7 @@
     'issues' => 'https://github.com/yclas/yclas/issues?q=milestone%3A3.0.0+is%3Aclosed',
     'download' => 'https://j.mp/yc_300',
   ),
-  '2.9.0' => 
+  '2.9.0' =>
   array (
     'codename' => 'Moscow',
     'released' => '2016-07-22',
@@ -144,7 +153,7 @@
     'issues' => 'https://github.com/yclas/yclas/issues?q=milestone%3A2.9.0+is%3Aclosed',
     'download' => 'https://j.mp/oc_290',
   ),
-  '2.8.0' => 
+  '2.8.0' =>
   array (
     'codename' => 'Saigon',
     'released' => '2016-06-28',
@@ -153,7 +162,7 @@
     'issues' => 'https://github.com/yclas/yclas/issues?q=milestone%3A2.8.0+is%3Aclosed',
     'download' => 'https://j.mp/oc_280',
   ),
-  '2.7.2' => 
+  '2.7.2' =>
   array (
     'codename' => 'Tlaloc2',
     'released' => '2016-05-25',
@@ -162,7 +171,7 @@
     'issues' => 'https://github.com/yclas/yclas/issues?q=milestone%3A2.7.2+is%3Aclosed',
     'download' => 'https://j.mp/oc_272',
   ),
-  '2.7.1' => 
+  '2.7.1' =>
   array (
     'codename' => 'Tlaloc',
     'released' => '2016-05-10',
@@ -171,7 +180,7 @@
     'issues' => 'https://github.com/yclas/yclas/issues?q=milestone%3A2.7.1+is%3Aclosed',
     'download' => 'https://j.mp/oc_271',
   ),
-  '2.7.0' => 
+  '2.7.0' =>
   array (
     'codename' => 'Taipei',
     'released' => '2016-03-11',
@@ -180,7 +189,7 @@
     'issues' => 'https://github.com/yclas/yclas/issues?q=milestone%3A2.7.0+is%3Aclosed',
     'download' => 'https://j.mp/oc_270',
   ),
-  '2.6.1' => 
+  '2.6.1' =>
   array (
     'codename' => 'Taiwan',
     'released' => '2015-12-22',
@@ -189,7 +198,7 @@
     'issues' => 'https://github.com/yclas/yclas/issues?q=milestone%3A2.6.1+is%3Aclosed',
     'download' => 'http://j.mp/oc_261',
   ),
-  '2.6.0' => 
+  '2.6.0' =>
   array (
     'codename' => 'Taipei',
     'released' => '2015-12-01',
@@ -198,7 +207,7 @@
     'issues' => 'https://github.com/yclas/yclas/issues?q=milestone%3A2.6.0+is%3Aclosed',
     'download' => 'http://j.mp/oc_260',
   ),
-  '2.5.1' => 
+  '2.5.1' =>
   array (
     'codename' => 'Punta Cana',
     'released' => '2015-09-10',
@@ -207,7 +216,7 @@
     'issues' => 'https://github.com/yclas/yclas/issues?q=milestone%3A2.5.1+is%3Aclosed',
     'download' => 'http://j.mp/oc_251',
   ),
-  '2.5.0' => 
+  '2.5.0' =>
   array (
     'codename' => 'Las Galeras',
     'released' => '2015-08-10',
@@ -216,7 +225,7 @@
     'issues' => 'https://github.com/yclas/yclas/issues?q=milestone%3A2.5.0+is%3Aclosed',
     'download' => 'http://j.mp/oc_250',
   ),
-  '2.4.1' => 
+  '2.4.1' =>
   array (
     'codename' => 'Puerto Plata',
     'released' => '2015-05-19',
@@ -225,7 +234,7 @@
     'issues' => 'https://github.com/yclas/yclas/issues?q=milestone%3A2.4.1+is%3Aclosed',
     'download' => 'http://j.mp/oc_241',
   ),
-  '2.4.0' => 
+  '2.4.0' =>
   array (
     'codename' => 'Samana',
     'released' => '2015-04-28',
@@ -234,7 +243,7 @@
     'issues' => 'https://github.com/yclas/yclas/issues?milestone=26&page=1&state=closed',
     'download' => 'http://j.mp/oc_240',
   ),
-  '2.3.1' => 
+  '2.3.1' =>
   array (
     'codename' => 'Boca Chica',
     'released' => '2015-02-02',
@@ -243,7 +252,7 @@
     'issues' => 'https://github.com/yclas/yclas/issues?milestone=25&page=1&state=closed',
     'download' => 'http://j.mp/oc_231',
   ),
-  '2.3.0' => 
+  '2.3.0' =>
   array (
     'codename' => 'Bayahibe',
     'released' => '2014-12-16',
@@ -252,7 +261,7 @@
     'issues' => 'https://github.com/yclas/yclas/issues?milestone=24&page=1&state=closed',
     'download' => 'http://j.mp/oc_230',
   ),
-  '2.2.1' => 
+  '2.2.1' =>
   array (
     'codename' => 'Abroscopus',
     'released' => '2014-09-17',
@@ -261,7 +270,7 @@
     'issues' => 'https://github.com/yclas/yclas/issues?milestone=23&page=1&state=closed',
     'download' => 'http://j.mp/oc_221',
   ),
-  '2.2.0' => 
+  '2.2.0' =>
   array (
     'codename' => 'Dryocopus',
     'released' => '2014-08-27',
@@ -270,7 +279,7 @@
     'issues' => 'https://github.com/yclas/yclas/issues?milestone=22&page=1&state=closed',
     'download' => 'http://j.mp/oc_220',
   ),
-  '2.1.8.1' => 
+  '2.1.8.1' =>
   array (
     'codename' => 'Vila Olimpica',
     'released' => '2014-06-30',
@@ -279,7 +288,7 @@
     'issues' => 'http://open-classifieds.com/2014/06/30/open-classifieds-2-1-8-1/',
     'download' => 'http://j.mp/oc_2181',
   ),
-  '2.1.8' => 
+  '2.1.8' =>
   array (
     'codename' => 'Barceloneta',
     'released' => '2014-05-29',
@@ -288,7 +297,7 @@
     'issues' => 'https://github.com/yclas/yclas/issues?milestone=21&page=1&state=closed',
     'download' => 'http://j.mp/oc_218',
   ),
-  '2.1.7' => 
+  '2.1.7' =>
   array (
     'codename' => 'Ciutadella',
     'released' => '2014-05-19',
@@ -297,7 +306,7 @@
     'issues' => 'https://github.com/yclas/yclas/issues?milestone=20&page=1&state=closed',
     'download' => 'http://j.mp/oc_217',
   ),
-  '2.1.6' => 
+  '2.1.6' =>
   array (
     'codename' => 'Llacuna',
     'released' => '2014-05-02',
@@ -306,7 +315,7 @@
     'issues' => 'https://github.com/yclas/yclas/issues?milestone=19&state=closed',
     'download' => 'http://j.mp/oc_216',
   ),
-  '2.1.5' => 
+  '2.1.5' =>
   array (
     'codename' => 'Bogatell',
     'released' => '2014-05-01',
@@ -315,7 +324,7 @@
     'issues' => 'https://github.com/yclas/yclas/issues?milestone=19&state=closed',
     'download' => 'http://j.mp/oc_215',
   ),
-  '2.1.4' => 
+  '2.1.4' =>
   array (
     'codename' => 'Budapest',
     'released' => '2014-03-26',
@@ -324,7 +333,7 @@
     'issues' => 'https://github.com/yclas/yclas/issues?milestone=17&state=closed',
     'download' => 'http://j.mp/oc_214',
   ),
-  '2.1.3' => 
+  '2.1.3' =>
   array (
     'codename' => 'Nmemba',
     'released' => '2014-03-03',
@@ -333,7 +342,7 @@
     'issues' => 'https://github.com/yclas/yclas/issues?milestone=16&state=closed',
     'download' => 'http://j.mp/oc_213',
   ),
-  '2.1.2' => 
+  '2.1.2' =>
   array (
     'codename' => 'Paje',
     'released' => '2014-01-30',
@@ -342,7 +351,7 @@
     'issues' => 'https://github.com/yclas/yclas/issues?milestone=15&state=closed',
     'download' => 'http://j.mp/oc_212',
   ),
-  '2.1.1' => 
+  '2.1.1' =>
   array (
     'codename' => 'Damascus',
     'released' => '2014-01-10',
@@ -351,7 +360,7 @@
     'issues' => 'https://github.com/yclas/yclas/issues?milestone=14&state=closed',
     'download' => 'http://j.mp/oc_211',
   ),
-  '2.1' => 
+  '2.1' =>
   array (
     'codename' => 'Belgrade',
     'released' => '2013-12-26',
@@ -360,7 +369,7 @@
     'issues' => 'https://github.com/yclas/yclas/issues?milestone=13&state=closed',
     'download' => 'http://j.mp/oc_210',
   ),
-  '2.0.7' => 
+  '2.0.7' =>
   array (
     'codename' => 'Reoc',
     'released' => '2013-10-11',
@@ -369,7 +378,7 @@
     'issues' => 'https://github.com/yclas/yclas/issues?milestone=12&state=closed',
     'download' => 'http://j.mp/oc_207',
   ),
-  '2.0.6' => 
+  '2.0.6' =>
   array (
     'codename' => 'Reoc',
     'released' => '2013-09-05',
@@ -378,7 +387,7 @@
     'issues' => 'https://github.com/yclas/yclas/issues?milestone=11&state=closed',
     'download' => 'http://j.mp/oc_206',
   ),
-  '2.0.5' => 
+  '2.0.5' =>
   array (
     'codename' => 'Reoc',
     'released' => '2013-08-06',
@@ -386,7 +395,7 @@
     'changelog' => 'https://github.com/yclas/yclas/commits/2.0.5',
     'issues' => 'https://github.com/yclas/yclas/issues?milestone=10&state=closed',
   ),
-  '2.0.4' => 
+  '2.0.4' =>
   array (
     'codename' => 'Reoc',
     'released' => '2013-07-09',
@@ -394,7 +403,7 @@
     'changelog' => 'https://github.com/yclas/yclas/commits/2.0.4',
     'issues' => 'https://github.com/yclas/yclas/issues?milestone=9&state=closed',
   ),
-  '2.0.3' => 
+  '2.0.3' =>
   array (
     'codename' => 'Reoc',
     'released' => '2013-07-02',
@@ -402,7 +411,7 @@
     'changelog' => 'https://github.com/yclas/yclas/commits/2.0.3',
     'issues' => 'https://github.com/yclas/yclas/issues?milestone=8&state=closed',
   ),
-  '2.0.2' => 
+  '2.0.2' =>
   array (
     'codename' => 'Reoc',
     'released' => '2013-06-14',
@@ -410,7 +419,7 @@
     'changelog' => 'https://github.com/yclas/yclas/commits/2.0.2',
     'issues' => 'https://github.com/yclas/yclas/issues?milestone=7&state=closed',
   ),
-  '2.0.1' => 
+  '2.0.1' =>
   array (
     'codename' => 'Reoc',
     'released' => '2013-06-07',
@@ -418,7 +427,7 @@
     'changelog' => 'https://github.com/yclas/yclas/commits/2.0.1',
     'issues' => 'https://github.com/yclas/yclas/issues?milestone=6&state=closed',
   ),
-  '2.0' => 
+  '2.0' =>
   array (
     'codename' => 'Reoc',
     'released' => '2013-05-31',
