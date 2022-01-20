@@ -25,7 +25,7 @@
         href="?status=<?=Model_Message::STATUS_ARCHIVED?>"
         class="btn btn-light <?=(core::get('status',-1)==Model_Message::STATUS_ARCHIVED)?'active':''?>"
     >
-        <i class="fas fa-archive"></i> <?=_e('Archieved')?>
+        <i class="fas fa-archive"></i> <?=_e('Archive')?>
     </a>
 
     <a href="?status=<?=Model_Message::STATUS_SPAM?>" class="btn btn-light <?=(core::get('status',-1)==Model_Message::STATUS_SPAM)?'active':''?>">

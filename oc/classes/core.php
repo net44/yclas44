@@ -734,7 +734,7 @@ class Core {
         if ( ($url_location = get_headers($download_url,1)) != FALSE AND is_array($url_location) AND isset($url_location['Location']) )
         {
             //d($url_location);
-            $download_url = end($url_location['Location']);
+            $download_url = is_array($url_location['Location']) ? end($url_location['Location']) : $url_location['Location'];
             //d($download_url);
 
             $fname = DOCROOT.'themes/'.$l.'.zip'; //root folder

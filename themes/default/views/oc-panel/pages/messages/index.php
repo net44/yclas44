@@ -13,7 +13,7 @@
             <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> <?=_e('Unread')?>
         </a>
         <a href="?status=<?=Model_Message::STATUS_ARCHIVED?>" class="btn <?=(core::get('status',-1)==Model_Message::STATUS_ARCHIVED)?'btn-primary':'btn-default'?>">
-            <span class="glyphicon glyphicon-folder-close" aria-hidden="true"></span> <?=_e('Archieved')?>
+            <span class="glyphicon glyphicon-folder-close" aria-hidden="true"></span> <?=_e('Archive')?>
         </a>
         <a href="?status=<?=Model_Message::STATUS_SPAM?>" class="btn <?=(core::get('status',-1)==Model_Message::STATUS_SPAM)?'btn-primary':'btn-default'?>">
             <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> <?=_e('Spam')?>

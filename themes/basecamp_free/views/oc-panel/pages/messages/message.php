@@ -18,7 +18,7 @@
 				<div class="list-group">
 					<a href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'index'))?>" class="list-group-item"><?=_e('All')?></a>
 					<a href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'index'))?>?status=<?=Model_Message::STATUS_NOTREAD?>" class="list-group-item"><?=_e('Unread')?></a>
-					<a href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'index'))?>?status=<?=Model_Message::STATUS_ARCHIVED?>" class="list-group-item"><?=_e('Archieved')?></a>
+					<a href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'index'))?>?status=<?=Model_Message::STATUS_ARCHIVED?>" class="list-group-item"><?=_e('Archive')?></a>
 					<a href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'index'))?>?status=<?=Model_Message::STATUS_SPAM?>" class="list-group-item"><?=_e('Spam')?></a>
 				</div>
 			</div>

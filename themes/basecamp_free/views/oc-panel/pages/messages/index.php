@@ -6,7 +6,7 @@
 				<?if (core::get('status',-1)==Model_Message::STATUS_NOTREAD):?>	
 					<h3><?=_e('Unread')?></h3>
 				<?elseif (core::get('status',-1)==Model_Message::STATUS_ARCHIVED):?>
-					<h3><?=_e('Archieved')?></h3>
+					<h3><?=_e('Archive')?></h3>
 				<?elseif (core::get('status',-1)==Model_Message::STATUS_SPAM):?>
 					<h3><?=_e('Spam')?></h3>
 				<?else:?>
@@ -30,7 +30,7 @@
 					</button>
 					<ul class="dropdown-menu">
 						<li>
-							<a href="?status=<?=Model_Message::STATUS_ARCHIVED?>"><span class="glyphicon glyphicon-folder-close"></span> <?=_e('Archieved')?></a>
+							<a href="?status=<?=Model_Message::STATUS_ARCHIVED?>"><span class="glyphicon glyphicon-folder-close"></span> <?=_e('Archive')?></a>
 						</li>
 						<li>
 							<a href="?status=<?=Model_Message::STATUS_SPAM?>"><span class="glyphicon glyphicon-fire"></span> <?=_e('Spam')?></a>
@@ -43,7 +43,7 @@
 				<div class="list-group">
 					<a href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'index'))?>" class="list-group-item <?=(!is_numeric(core::get('status')))?'active':''?>"><?=_e('All')?></a>
 					<a href="?status=<?=Model_Message::STATUS_NOTREAD?>" class="list-group-item <?=(core::get('status',-1)==Model_Message::STATUS_NOTREAD)?'active':''?>"><?=_e('Unread')?></a>
-					<a href="?status=<?=Model_Message::STATUS_ARCHIVED?>" class="list-group-item <?=(core::get('status',-1)==Model_Message::STATUS_ARCHIVED)?'active':''?>"><?=_e('Archieved')?></a>
+					<a href="?status=<?=Model_Message::STATUS_ARCHIVED?>" class="list-group-item <?=(core::get('status',-1)==Model_Message::STATUS_ARCHIVED)?'active':''?>"><?=_e('Archive')?></a>
 					<a href="?status=<?=Model_Message::STATUS_SPAM?>" class="list-group-item <?=(core::get('status',-1)==Model_Message::STATUS_SPAM)?'active':''?>"><?=_e('Spam')?></a>
 				</div>
 			</div>
