@@ -99,6 +99,8 @@ class Cron_Ad {
      */
     public static function to_expire($days = 2)
     {
+        $days = empty($days) ? 2 : $days;
+
         //feature expire ads from yesterday
         if((New Model_Field())->get('expiresat'))
         {
@@ -111,7 +113,7 @@ class Cron_Ad {
         {
             $ads = new Model_Ad();
             $ads = $ads ->where('status','=',Model_Ad::STATUS_PUBLISHED)
-                        ->where(DB::expr('DATE(DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY))'),'=', Date::format('+'.$days.' days','Y-m-d'))
+                        ->where(DB::expr('DATE(DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY))'),'=', Date::format("+ {$days} days", 'Y-m-d'))
                         ->find_all();
 
         }
