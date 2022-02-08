@@ -72,10 +72,15 @@ class Cron_Ad {
 
         foreach ($ads as $ad)
         {
-            $edit_url = $ad->user->ql('oc-panel',array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad));
+            $edit_url = $ad->user->ql('oc-panel', ['controller' => 'myads', 'action' => 'update', 'id'=>$ad->id_ad]);
 
-            $ad->user->email('ad-expired', array('[AD.NAME]'      =>$ad->title,
-                                                 '[URL.EDITAD]'   =>$edit_url));
+            $activate_url = $ad->user->ql('oc-panel', ['controller' => 'myads', 'action' => 'activate', 'id'=>$ad->id_ad]);
+
+            $ad->user->email('ad-expired', [
+                '[AD.NAME]' =>$ad->title,
+                '[URL.EDITAD]' =>$edit_url,
+                '[URL.ACTIVATEAD]' =>$activate_url,
+            ]);
 
             //Change status to unavailable
             $ad->status = Model_Ad::STATUS_UNAVAILABLE;
