@@ -72,10 +72,15 @@ class Cron_Ad {
 
         foreach ($ads as $ad)
         {
-            $edit_url = $ad->user->ql('oc-panel',array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad));
+            $edit_url = $ad->user->ql('oc-panel', ['controller' => 'myads', 'action' => 'update', 'id'=>$ad->id_ad]);
 
-            $ad->user->email('ad-expired', array('[AD.NAME]'      =>$ad->title,
-                                                 '[URL.EDITAD]'   =>$edit_url));
+            $activate_url = $ad->user->ql('oc-panel', ['controller' => 'myads', 'action' => 'activate', 'id'=>$ad->id_ad]);
+
+            $ad->user->email('ad-expired', [
+                '[AD.NAME]' =>$ad->title,
+                '[URL.EDITAD]' =>$edit_url,
+                '[URL.ACTIVATEAD]' =>$activate_url,
+            ]);
 
             //Change status to unavailable
             $ad->status = Model_Ad::STATUS_UNAVAILABLE;
@@ -99,6 +104,8 @@ class Cron_Ad {
      */
     public static function to_expire($days = 2)
     {
+        $days = empty($days) ? 2 : $days;
+
         //feature expire ads from yesterday
         if((New Model_Field())->get('expiresat'))
         {
@@ -111,7 +118,7 @@ class Cron_Ad {
         {
             $ads = new Model_Ad();
             $ads = $ads ->where('status','=',Model_Ad::STATUS_PUBLISHED)
-                        ->where(DB::expr('DATE(DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY))'),'=', Date::format('+'.$days.' days','Y-m-d'))
+                        ->where(DB::expr('DATE(DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY))'),'=', Date::format("+ {$days} days", 'Y-m-d'))
                         ->find_all();
 
         }

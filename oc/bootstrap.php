@@ -33,7 +33,7 @@ ini_set('unserialize_callback_func', 'spl_autoload_call');
 // -- To debug enable DEVELOPMENT environment by changing your localhost
 if ( ! isset($_SERVER['SERVER_NAME']))
     Kohana::$environment = Kohana::STAGING;
-elseif (OC_DEBUG OR $_SERVER['SERVER_NAME'] == 'reoc.lo')
+elseif (OC_DEBUG OR $_SERVER['SERVER_NAME'] == 'reoc.lo' OR $_SERVER['SERVER_NAME'] == 'yclas.test')
     Kohana::$environment =  Kohana::DEVELOPMENT;
 else
     Kohana::$environment = Kohana::PRODUCTION;

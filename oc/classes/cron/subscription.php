@@ -103,7 +103,18 @@ class Cron_Subscription {
                         }
                     }
 
-                }//if plan loaded
+                }
+                // plan found but is no longer active
+                elseif($plan->loaded() AND $plan->status != 1)
+                {
+                    //if config enabled
+                    if ( Core::config('general.subscriptions_expire') == TRUE )
+                    {
+                        //deactivate ads
+                        DB::update('ads')->set(array('status' =>Model_Ad::STATUS_UNAVAILABLE ))->where('id_user', '=',$s->user->id_user)->where('status', '=',Model_Ad::STATUS_PUBLISHED)->execute();
+                    }
+                }
+                //if plan loaded
 
             }//end foreach
 
