@@ -1,6 +1,6 @@
 <?php 
 
-//Before that test it's important import the example file "import_ads_example.csv"
+//Before that test it's important import the example file "import_ads_example.zip"
 
 $I = new AcceptanceTester($scenario);
 $I->am('a visitor');
