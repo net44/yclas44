@@ -186,7 +186,15 @@ class Model_Location extends ORM {
         {
             $locs = new self;
             $locs->order_by('id_location_parent','asc');
-            $locs->order_by('order','asc');
+
+            if (Core::config('general.locations_alphabetically'))
+            {
+                $locs->order_by('name','asc');
+            }
+            else
+            {
+                $locs->order_by('order','asc');
+            }
 
             if (is_int($limit))
                 $locs->limit($limit);
@@ -233,7 +241,17 @@ class Model_Location extends ORM {
         if ( ($locs_parent_deep = Core::cache($cache_name))===NULL)
         {
             $locs = new self;
-            $locs = $locs->order_by('order','asc')->find_all()->cached()->as_array('id_location');
+            
+            if (Core::config('general.locations_alphabetically'))
+            {
+                $locs = $locs->order_by('name','asc');
+            }
+            else
+            {
+                $locs = $locs->order_by('order','asc');
+            }
+
+            $locs = $locs->find_all()->cached()->as_array('id_location');
 
             // array by parent deep,
             // each parent deep is one array with locations of the same index
@@ -269,7 +287,15 @@ class Model_Location extends ORM {
         {
             $locs = new self;
             $locs->order_by('id_location_parent','asc');
-            $locs->order_by('order','asc');
+            
+            if (Core::config('general.locations_alphabetically'))
+            {
+                $locs->order_by('name', 'asc');
+            }
+            else
+            {
+                $locs->order_by('order', 'asc');
+            }
 
             if (is_int($limit))
                 $locs->limit($limit);
@@ -428,7 +454,19 @@ class Model_Location extends ORM {
 
             //get all the locations with level 0 and 1
             $locations = new self();
-            $locations = $locations->where('id_location','!=',1)->where('parent_deep','IN',array(0,1))->order_by('order','asc')->cached()->find_all();
+            
+            $locations = $locations->where('id_location','!=',1)->where('parent_deep','IN',array(0,1));
+
+            if (Core::config('general.locations_alphabetically'))
+            {
+                $locations = $locations->order_by('name','asc');
+            }
+            else
+            {
+                $locations = $locations->order_by('order','asc');
+            }
+
+            $locations = $locations->cached()->find_all();
 
             //generating the array
             $locs_count = array();

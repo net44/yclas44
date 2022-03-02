@@ -100,6 +100,7 @@ class Controller_Panel_Settings_General extends Auth_Controller {
         Model_Config::set_value('general', 'measurement', $data['measurement']);
         Model_Config::set_value('general', 'search_by_description', $data['search_by_description'] ?? 0);
         Model_Config::set_value('general', 'search_multi_catloc', $data['search_multi_catloc'] ?? 0);
+        Model_Config::set_value('general', 'locations_alphabetically', $data['locations_alphabetically'] ?? 0);
 
         if (Core::is_cloud())
         {

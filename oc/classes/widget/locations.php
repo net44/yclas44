@@ -64,7 +64,19 @@ class Widget_Locations extends Widget
 
     	    //list of children of current location
             // if list_loc dosent have siblings take brothers //
-    	    $list_loc = $loc->where('id_location_parent','=',$location)->order_by('order','asc')->cached()->find_all();
+            $list_loc = $loc->where('id_location_parent','=',$location);
+
+            if (Core::config('general.locations_alphabetically'))
+            {
+                $list_loc = $list_loc->order_by('name','asc');
+            }
+            else
+            {
+                $list_loc = $list_loc->order_by('order','asc');
+            }
+
+            $list_loc = $list_loc->cached()->find_all();
+            
     	    if(core::count($list_loc) == 0)
             {
                 $list_loc = $loc->where('id_location_parent','=',Model_Location::current()->id_location_parent)->order_by('order','asc')->cached()->find_all();
@@ -85,7 +97,19 @@ class Widget_Locations extends Widget
        	}
         else
         {
-			$list_loc = $loc->where('id_location_parent','=',1)->order_by('order','asc')->cached()->find_all();
+			$list_loc = $loc->where('id_location_parent','=',1);
+
+            if (Core::config('general.locations_alphabetically'))
+            {
+                $list_loc = $list_loc->order_by('name','asc');
+            }
+            else
+            {
+                $list_loc = $list_loc->order_by('order','asc');
+            }
+
+            $list_loc = $list_loc->cached()->find_all();
+
 			$current_and_parent = NULL;
         }
         $this->locations = $this->locations;

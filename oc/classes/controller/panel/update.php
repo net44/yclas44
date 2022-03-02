@@ -10,6 +10,19 @@
  */
 class Controller_Panel_Update extends Auth_Controller
 {
+    public function action_450()
+    {
+        $configs = [
+            [
+                'config_key' => 'locations_alphabetically',
+                'group_name' => 'general',
+                'config_value' => '0',
+            ],
+        ];
+
+        Model_Config::config_array($configs);
+    }
+
     public function action_440()
     {
         $configs = [

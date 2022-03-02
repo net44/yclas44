@@ -29,6 +29,11 @@ class Controller_Api_Locations extends Api_Controller {
                         ->where_close();
                 }
 
+                if (Core::config('general.locations_alphabetically'))
+                {
+                    $this->_sort = ['name' => 'asc'];
+                }
+
                 //filter results by param, verify field exists and has a value and sort the results
                 $locs->api_filter($this->_filter_params)->api_sort($this->_sort);
 

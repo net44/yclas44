@@ -378,6 +378,26 @@
                         </div>
                     </div>
                 </div>
+                <div class="mt-8 border-t border-gray-200 pt-8">
+                    <div>
+                        <h3 class="text-lg leading-6 font-medium text-gray-900">
+                            <?=__('Location configuration')?>
+                        </h3>
+                    </div>
+                    <div class="mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">
+                        <div class="sm:col-span-6">
+                            <div class="absolute flex items-center h-5">
+                                <?=FORM::checkbox('locations_alphabetically', 1, (bool) Core::post('locations_alphabetically', Core::config('general.locations_alphabetically')), ['class' => 'form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out'])?>
+                            </div>
+                            <div class="pl-7 text-sm leading-5">
+                                <?=FORM::label('locations_alphabetically', __('Automatically sort all locations alphabetically.'), ['class'=>'font-medium text-gray-700'])?>
+                                <p class="text-gray-500">
+                                    <?=__("Once enabled, it sorts all locations alphabetically and ignores any other configured location order.")?>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="mt-8 border-t border-gray-200 pt-5">
                 <div class="flex justify-end">
