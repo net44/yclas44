@@ -43,7 +43,18 @@ class Controller_Panel_Location extends Auth_Crud {
                 }
 
                 $locs = new Model_Location();
-                $locs = $locs->where('id_location_parent','=',Core::get('id_location', 1))->order_by('order','asc')->find_all()->cached()->as_array('id_location');
+                $locs = $locs->where('id_location_parent','=',Core::get('id_location', 1));
+
+                if (Core::config('general.locations_alphabetically'))
+                {
+                    $locs = $locs->order_by('name','asc');
+                }
+                else
+                {
+                    $locs = $locs->order_by('order','asc');
+                }
+
+                $locs = $locs->find_all()->cached()->as_array('id_location');
             }
             else
             {
@@ -482,7 +493,18 @@ class Controller_Panel_Location extends Auth_Crud {
         $locs_arr  = Model_Location::get_as_array();
 
         $locs = new Model_Location();
-        $locs = $locs->order_by('order','asc')->find_all()->cached()->as_array('id_location');
+        
+        if (Core::config('general.locations_alphabetically'))
+        {
+            $locs = $locs->order_by('name','asc');
+        }
+        else
+        {
+            $locs = $locs->order_by('order','asc');
+        }
+
+        $locs = $locs->find_all()->cached()->as_array('id_location');
+        
         foreach ($locs as $loc)
         {
             $deep = 0;
