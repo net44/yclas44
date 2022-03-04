@@ -56,6 +56,24 @@ class Valid extends Kohana_Valid{
         if (core::config('general.email_domains') !== NULL AND core::config('general.email_domains') != '' AND ! in_array($domain, explode(',', core::config('general.email_domains'))) AND ! in_array($email, Email::get_admins_emails()))
                 return FALSE;
 
+        if (core::config('general.disallow_email_subdomains'))
+        {
+            $domain_parts = explode('.', $domain);
+            $domain_parts = array_reverse($domain_parts);
+
+            // Invalidates sudomain.domain.com.mx
+            if (count($domain_parts) >= 4)
+            {
+                return FALSE;
+            }
+
+            // Invalidates subdomain.domain.com but allow domain.com.mx
+            if (isset($domain_parts[2]) AND strlen($domain_parts[1]) > 3)
+            {
+                return FALSE;
+            }
+        }
+
         // Check if the email domain has a valid MX record
         return (bool) checkdnsrr($domain, 'MX');
     }

@@ -165,6 +165,17 @@
                                 <?=__('Adds content to contact page')?>
                             </p>
                         </div>
+                        <div class="sm:col-span-6">
+                            <div class="absolute flex items-center h-5">
+                                <?=FORM::checkbox('disallow_email_subdomains', 1, (bool) Core::post('disallow_email_subdomains', Core::config('general.disallow_email_subdomains')), ['class' => 'form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out'])?>
+                            </div>
+                            <div class="pl-7 text-sm leading-5">
+                                <?=FORM::label('disallow_email_subdomains', __('Disallow email subdomains'), ['class'=>'font-medium text-gray-700'])?>
+                                <p class="text-gray-500">
+                                    <?=__("Once enabled, it blocks the use of email subdomains.")?>
+                                </p>
+                            </div>
+                        </div>
                         <div class="sm:col-span-4">
                             <?= FORM::label('email_domains', __('Allowed email domains'), array('class'=>'block text-sm font-medium leading-5 text-gray-700'))?>
                             <div class="mt-1 rounded-md shadow-sm">

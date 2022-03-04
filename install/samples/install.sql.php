@@ -808,6 +808,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('general', 'ewallet_mark_as_received_reminder_after_n_days', '7'),
 ('general', 'ewallet_mark_as_received_after_n_days', '14'),
 ('general', 'locations_alphabetically', '0'),
+('general', 'disallow_email_subdomains', '0'),
 ('image', 'allowed_formats', 'jpeg,jpg,png,'),
 ('image', 'max_image_size', '5'),
 ('image', 'height', ''),

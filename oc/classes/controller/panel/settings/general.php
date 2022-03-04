@@ -88,6 +88,7 @@ class Controller_Panel_Settings_General extends Auth_Controller {
         Model_Config::set_value('general', 'contact_page', $data['contact_page']);
         Model_Config::set_value('general', 'email_domains', $data['email_domains']);
         Model_Config::set_value('general', 'disallowed_email_domains', $data['disallowed_email_domains']);
+        Model_Config::set_value('general', 'disallow_email_subdomains', $data['disallow_email_subdomains'] ?? 0);
         Model_Config::set_value('general', 'api_key', $data['api_key']);
         Model_Config::set_value('general', 'html_head', Kohana::$_POST_ORIG['html_head']);
         Model_Config::set_value('general', 'html_footer', Kohana::$_POST_ORIG['html_footer']);
