@@ -155,7 +155,7 @@ class Feed extends Kohana_Feed {
                 }
                 else
                 {
-                    $feed->channel->addChild($name, $value);
+                    $feed->channel->addChild($name, htmlspecialchars($value));
                 }
             }
         }
@@ -179,7 +179,7 @@ class Feed extends Kohana_Feed {
                 }
 
                 // Add the info to the row
-                $row->addChild($name, $value);
+                $row->addChild($name, htmlspecialchars($value));
             }
         }
 
