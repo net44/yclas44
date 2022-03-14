@@ -98,8 +98,8 @@ class Widget_Subscribers extends Widget
         // get all locations
         if ($this->locations != FALSE)
         {
-            $this->loc_items        = Model_Location::get_as_array();
-            $this->loc_order_items  = Model_Location::get_multidimensional();
+            $this->loc_items        = Model_Location::get_as_array(100);
+            $this->loc_order_items  = Model_Location::get_multidimensional(100);
         }
 
         if($this->price != FALSE)
