@@ -65,15 +65,14 @@
     <div class="bg-white shadow sm:rounded-lg mt-8">
         <div class="px-4 py-5 sm:p-6">
             <h3 class="text-lg leading-6 font-medium text-gray-900">
-                <?=__('Welcome')?> <?=Auth::instance()->get_user()->name?>
+                <?=__('Welcome')?>
             </h3>
             <div class="mt-2 max-w-xl text-sm leading-5 text-gray-500">
                 <p>
-                    <?=__('Thanks for using Yclas.')?>
                     <?=__('Your installation version is')?>
                     <a class="underline text-blue-600" href="<?=Route::url('oc-panel',array('controller'=>'update','action'=>'index'))?>?reload=1">
                         <?=core::VERSION?>
-                    </a>
+                    </a>.
                 </p>
             </div>
             <div class="mt-3 text-sm leading-5 flex inline-flex">
