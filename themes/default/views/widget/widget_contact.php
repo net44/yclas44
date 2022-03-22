@@ -11,7 +11,7 @@
         <fieldset>
             <?if(core::config('general.messaging') == TRUE AND !Auth::instance()->logged_in()):?>
                 <div class="alert alert-warning">
-                    <?=_e('Please, login before contact the advertiser!')?>
+                    <?=_e('Please login before contact the advertiser.')?>
                 </div>
                 <div class="form-group">
                     <div class="col-xs-12">

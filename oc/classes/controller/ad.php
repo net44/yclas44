@@ -355,7 +355,7 @@ class Controller_Ad extends Controller {
 	{
         if ((Core::config('advertisement.login_to_view_ad')) AND ! Auth::instance()->logged_in())
         {
-            Alert::set(Alert::INFO, __('Please, login before to continue.'));
+            Alert::set(Alert::INFO, __('Please login before to continue.'));
             HTTP::redirect(Route::url('oc-panel', ['controller' => 'auth', 'action' => 'login']).'?auth_redirect='.URL::current());
         }
 
