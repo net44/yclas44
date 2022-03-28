@@ -1904,9 +1904,14 @@ class Model_Ad extends ORM {
         }
 
         if(core::config('general.number_format') == '%n')
+        {
             return core::config('payment.paypal_currency');
-        else
-            return core::config('general.number_format');
+        }
+
+        if(core::config('general.number_format') == '%.0n')
+        {
+            return core::config('payment.paypal_currency');
+        }
     }
 
     /**
