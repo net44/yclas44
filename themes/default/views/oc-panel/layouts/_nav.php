@@ -3,6 +3,17 @@
 <nav class="mt-5 px-2">
     <?= Theme::admin_sidebar_link(__('Dashboard'), 'home', 'index', '<svg stroke="currentColor" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l9-9 9 9M5 10v10a1 1 0 001 1h3a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1h3a1 1 0 001-1V10M9 21h6"/></svg>') ?>
     <?= Theme::admin_sidebar_link(__('Stats'), 'stats', 'index', '<svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>') ?>
+    <? if (Core::extra_features() OR Core::is_cloud()) : ?>
+        <a
+            href="https://yclas.com/panel/support/index"
+            target="_blank"
+            class="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium text-white rounded-md hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-blue-700 transition ease-in-out duration-150">
+            <span class="mr-3 h-6 w-6 text-blue-400 group-hover:text-blue-300 group-focus:text-blue-300 transition ease-in-out duration-150">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+            </span>
+            <?= __('Support') ?>
+        </a>
+    <? endif ?>
 </nav>
 <nav class="mt-5 flex-1 px-2">
     <h3 class="px-2 text-xs leading-4 font-semibold text-blue-500 uppercase tracking-wider">
