@@ -56,8 +56,13 @@ class Model_Location extends ORM {
             }
             elseif(Request::current()->param('location') != NULL || Request::current()->param('location') != URL::title(__('all')))
             {
-                self::$_current = self::$_current->where('seoname', '=', Request::current()->param('location'))
-                                                    ->limit(1)->cached()->find();
+                self::$_current = self::$_current
+                    ->where('id_location', '!=', 1)
+                    ->where('seoname', '=', Request::current()
+                    ->param('location'))
+                    ->limit(1)
+                    ->cached()
+                    ->find();
             }
         }
 
