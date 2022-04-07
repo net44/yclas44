@@ -81,7 +81,7 @@ class Controller_Contact extends Controller {
             if ( (core::config('advertisement.login_to_contact') == TRUE OR core::config('general.messaging') == TRUE)
 				AND !Auth::instance()->logged_in())
             {
-                Alert::set(Alert::INFO, __('Please, login before contacting'));
+                Alert::set(Alert::INFO, __('Please login before contacting.'));
                 HTTP::redirect(Route::url('ad',array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle)));
             }
 
@@ -203,7 +203,7 @@ class Controller_Contact extends Controller {
                 //require login to contact
                 if (core::config('general.messaging') == TRUE AND !Auth::instance()->logged_in())
                 {
-                    Alert::set(Alert::INFO, __('Please, login before contacting'));
+                    Alert::set(Alert::INFO, __('Please login before contacting.'));
                     HTTP::redirect(Route::url('oc-panel'));
                 }
 

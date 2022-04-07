@@ -3,12 +3,23 @@
 <nav class="mt-5 px-2">
     <?= Theme::admin_sidebar_link(__('Dashboard'), 'home', 'index', '<svg stroke="currentColor" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l9-9 9 9M5 10v10a1 1 0 001 1h3a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1h3a1 1 0 001-1V10M9 21h6"/></svg>') ?>
     <?= Theme::admin_sidebar_link(__('Stats'), 'stats', 'index', '<svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>') ?>
+    <? if (Core::extra_features() OR Core::is_cloud()) : ?>
+        <a
+            href="https://yclas.com/panel/support/index"
+            target="_blank"
+            class="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium text-white rounded-md hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-blue-700 transition ease-in-out duration-150">
+            <span class="mr-3 h-6 w-6 text-blue-400 group-hover:text-blue-300 group-focus:text-blue-300 transition ease-in-out duration-150">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+            </span>
+            <?= __('Support') ?>
+        </a>
+    <? endif ?>
 </nav>
 <nav class="mt-5 flex-1 px-2">
     <h3 class="px-2 text-xs leading-4 font-semibold text-blue-500 uppercase tracking-wider">
         <?= __('Manage') ?>
     </h3>
-    <?= Theme::admin_sidebar_link(__('Advertisements'), 'ad', 'index', '<svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24"><path d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"></path></svg>') ?>
+    <?= Theme::admin_sidebar_link(__('Ads'), 'ad', 'index', '<svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24"><path d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"></path></svg>') ?>
     <? if (in_array(core::config('general.moderation'), Model_Ad::$moderation_status)): ?>
         <?= Theme::admin_sidebar_link(__('Moderation'), 'ad', 'moderate', '<svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"></path></svg>') ?>
     <? endif ?>
@@ -49,8 +60,5 @@
     <?= Theme::admin_sidebar_link(__('Design'), 'design', 'index', '<svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24"><path d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path></svg>') ?>
     <?= Theme::admin_sidebar_link(__('Addons'), 'addons', 'index', '<svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>') ?>
     <?= Theme::admin_sidebar_link(__('Integrations'), 'integrations', 'index', '<svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"></path></svg>') ?>
-</nav>
-
-<nav class="mt-5 px-2">
     <?= Theme::admin_sidebar_link(__('Tools'), 'tools', 'index', '<svg fill="none" viewBox="0 0 512 512" stroke="currentColor"><path fill="currentColor" d="M507.48 117.18c-3-12.17-12.41-21.79-24.5-25.15-12.1-3.34-25.16.11-33.97 8.97l-58.66 58.63-32.44-5.4-5.38-32.41 58.67-58.64c8.84-8.89 12.28-21.92 8.91-33.99-3.38-12.11-13.06-21.5-25.29-24.53-53.09-13.19-107.91 2.07-146.54 40.69-37.63 37.62-52.6 91.37-40.72 143.27L24.04 372.06C8.53 387.53 0 408.12 0 430.02s8.53 42.49 24.04 57.97C39.51 503.47 60.1 512 82.01 512c21.88 0 42.47-8.53 57.98-24.01l183.34-183.26c51.79 11.87 105.64-3.14 143.49-40.93 38.09-38.1 53.69-94.27 40.66-146.62zm-74.61 112.69c-28.47 28.46-70.2 38.1-109.01 25.21l-14.06-4.69-203.75 203.67c-12.85 12.84-35.29 12.81-48.07 0-6.44-6.42-9.97-14.96-9.97-24.04 0-9.08 3.53-17.61 9.97-24.03l203.84-203.78-4.63-14.03c-12.81-38.9-3.22-80.62 25.04-108.9 20.35-20.32 47.19-31.24 75.04-31.24h1.12l-57.32 57.3 15.13 90.59 90.57 15.09 57.35-57.29c.32 28.26-10.62 55.52-31.25 76.14zM88.01 408.02c-8.84 0-16 7.16-16 16s7.16 16 16 16 16-7.16 16-16-7.16-16-16-16z" class=""></path></svg>') ?>
 </nav>

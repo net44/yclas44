@@ -102,5 +102,5 @@ Form::$error_tpl = '
 Alert::$tpl = '
     <div class="alert alert-%s">
 		<a class="close" data-dismiss="alert" href="#">×</a>
-		<strong>%s:</strong> %s
+		<h4 style="margin-bottom: 10px;">%s</h4> <p>%s</p>
 	</div>';

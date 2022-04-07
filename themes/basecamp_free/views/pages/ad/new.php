@@ -253,7 +253,7 @@
                         </div>
                         <br>
                     <?endif?>
-                    <?= FORM::button('submit_btn', _e('Publish new'), array('type'=>'submit', 'id' => 'publish-new-btn', 'data-swaltitle' => __('Are you sure?'), 'data-swaltext' => __('It looks like you have been about to publish a new advertisement, if you leave before submitting your changes will be lost.'), 'class'=>'btn btn-success pull-right btn-lg', 'action'=>Route::url('post_new',array('controller'=>'new','action'=>'index'))))?>
+                    <?= FORM::button('submit_btn', _e('Publish new'), array('type'=>'submit', 'id' => 'publish-new-btn', 'data-swaltitle' => __('Are you sure?'), 'data-swaltext' => __('It looks like you have been about to publish a new advertisement. If you leave before submitting your changes will be lost.'), 'class'=>'btn btn-success pull-right btn-lg', 'action'=>Route::url('post_new',array('controller'=>'new','action'=>'index'))))?>
 
                     <?if ( ! Core::config('advertisement.leave_alert')):?>
                         <input type="hidden" name="leave_alert" value="0" disabled>

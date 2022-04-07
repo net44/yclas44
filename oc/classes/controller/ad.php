@@ -254,7 +254,7 @@ class Controller_Ad extends Controller {
        		$pagination = Pagination::factory(array(
                     'view'           	=> 'pagination',
                     'total_items'    	=> $res_count,
-                    'items_per_page'    => core::request('items_per_page',core::config('advertisement.advertisements_per_page')),
+                    'items_per_page'    => min(core::request('items_per_page', core::config('advertisement.advertisements_per_page')), 100),
      	    ))->route(Route::get('list'))
               ->route_params(array(
                     'category' 			=> ($category!==NULL)?$category->seoname:URL::title(__('all')),
@@ -355,7 +355,7 @@ class Controller_Ad extends Controller {
 	{
         if ((Core::config('advertisement.login_to_view_ad')) AND ! Auth::instance()->logged_in())
         {
-            Alert::set(Alert::INFO, __('Please, login before to continue.'));
+            Alert::set(Alert::INFO, __('Please login before to continue.'));
             HTTP::redirect(Route::url('oc-panel', ['controller' => 'auth', 'action' => 'login']).'?auth_redirect='.URL::current());
         }
 
@@ -1508,7 +1508,7 @@ class Controller_Ad extends Controller {
                 $pagination = Pagination::factory(array(
                         'view'              => 'pagination',
                         'total_items'       => $res_count,
-                        'items_per_page'    => core::request('items_per_page',core::config('advertisement.advertisements_per_page')),
+                        'items_per_page'    => min(core::request('items_per_page', core::config('advertisement.advertisements_per_page')), 100),
                 ))->route_params(array(
                         'controller'        => $this->request->controller(),
                         'action'            => $this->request->action(),

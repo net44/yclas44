@@ -23,8 +23,19 @@
                     </p>
                 </div>
                 <div class="mt-5 sm:mt-0 sm:ml-6 sm:flex-shrink-0 sm:flex sm:items-center">
-                    <?=FORM::checkbox('is_active', 1, (bool) Core::post('is_active', $is_active), ['class' => 'form-checkbox h-6 w-6 text-blue-600 bg-gray-100 transition duration-150 ease-in-out'])?>
+                    <?=FORM::checkbox('is_active', 1, (bool) Core::post('is_active', $is_active), ['class' => 'form-checkbox h-6 w-6 text-blue-600 bg-gray-100 transition duration-150 ease-in-out', 'disabled'])?>
                 </div>
+            </div>
+            <div class="mt-5 sm:flex sm:items-center">
+                <span class="mt-3 w-ful inline-flex rounded-md shadow-sm sm:mt-0 sm:w-auto">
+                    <? if ($is_active) : ?>
+                        <?= Form::hidden('is_active', 0) ?>
+                        <?= Form::button('submit', __('Disable'), ['type'=>'submit', 'class'=>'w-full inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition ease-in-out duration-150 sm:w-auto sm:text-sm sm:leading-5'])?>
+                    <? else : ?> 
+                        <?= Form::hidden('is_active', 1) ?>
+                        <?= Form::button('submit', __('Enable'), ['type'=>'submit', 'class'=>'w-full inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition ease-in-out duration-150 sm:w-auto sm:text-sm sm:leading-5'])?>
+                    <? endif ?>
+                </span>
             </div>
             <div class="mt-8 border-t border-gray-200 pt-8">
                 <div class="grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">

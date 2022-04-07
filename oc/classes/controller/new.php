@@ -26,7 +26,7 @@ class Controller_New extends Controller
              OR Core::config('general.subscriptions')        == TRUE )
              AND !Auth::instance()->logged_in())
         {
-            Alert::set(Alert::INFO, __('Please, login before posting advertisement!'));
+            Alert::set(Alert::INFO, __('Please login before posting an ad.'), '<div style="margin-top: -10px"></div>');
             HTTP::redirect(Route::url('oc-panel',array('controller'=>'auth','action'=>'login')).'?auth_redirect='.URL::current());
         }
         //Detect early spam users, show him alert

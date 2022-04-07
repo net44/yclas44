@@ -39,7 +39,7 @@
 
         <!-- locations -->
         <?if($widget->loc_items !== NULL):?>
-            <?if(core::count($widget->loc_items) > 1 AND core::config('advertisement.location') != FALSE):?>
+            <?if(core::count($widget->loc_items) > 1 AND core::config('advertisement.location') != FALSE AND core::count($widget->loc_items) < 100):?>
                 <div class="form-group">
                     <div class="col-xs-10">
                         <?= FORM::label('location_subscribe', _e('Location'), array('class'=>'', 'for'=>'location_subscribe' ))?>
@@ -60,6 +60,17 @@
                             if (is_array($loc_order_subscribe))
                                 array_walk($loc_order_subscribe , 'lolo_subscribe',$widget->loc_items)
                         ?>
+                        </select>
+                    </div>
+                </div>
+            <?elseif(core::count($widget->loc_items) > 1 AND core::config('advertisement.location') != FALSE):?>
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <?= FORM::label('location_subscribe', _e('Location'), array('class'=>'', 'for'=>'location_subscribe'))?>
+                        <select name="location_subscribe" id="location_subscribe" class="form-control ajax-location-search" data-placeholder="<?=__('Location')?>" data-apiurl="<?=Route::url('api', array('version'=>'v1', 'format'=>'json', 'controller'=>'locations'))?>">
+                            <? if ( ! core::config('general.search_multi_catloc')) : ?>
+                                <option value=""><?=__('Location')?></option>
+                            <? endif ?>
                         </select>
                     </div>
                 </div>
