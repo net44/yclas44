@@ -394,6 +394,40 @@ class Model_User extends ORM {
     }
 
     /**
+     * return TRUE if user is inactive
+     *
+     * @param  string $email
+     * @return bool
+     */
+    public static function is_inactive($email = NULL)
+    {
+
+        //if he is login we can check if its an inactive
+        if ( Auth::instance()->logged_in() === TRUE )
+        {
+            if (Auth::instance()->get_user()->status == Model_User::STATUS_INACTIVE)
+            {
+                return TRUE;
+            }
+        }
+        //not loged in so only way to see it is after he posted with his email
+        elseif(Valid::email($email))
+        {
+            $user = (new Model_User())
+                ->where('email', '=', $email)
+                ->where('status', '=', Model_User::STATUS_INACTIVE)
+                ->find();
+
+            if ($user->loaded())
+            {
+                return TRUE;
+            }
+        }
+
+        return FALSE;
+    }
+
+    /**
      * return TRUE if user is spammer
      *
      * @param  string $email
