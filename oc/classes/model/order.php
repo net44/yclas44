@@ -209,17 +209,6 @@ class Model_Order extends ORM {
                                      '[VAT.PERCENTAGE]' => (isset($this->VAT) AND $this->VAT > 0)?$this->VAT:'');
 
             }
-
-            //send email to site owner! new sale!!
-            if(core::config('email.new_ad_notify') == TRUE)
-            {
-                Email::content(core::config('email.notify_email'),
-                                    core::config('general.site_name'),
-                                    core::config('email.notify_email'),
-                                    core::config('general.site_name'),'ads-sold',
-                                    $replace_email);
-            }
-
         }
     }
 

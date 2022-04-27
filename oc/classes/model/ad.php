@@ -1278,7 +1278,10 @@ class Model_Ad extends ORM {
                                     '[CUSTOMER.ADDRESS]' => $order->user->address);
 
             // send email to BUYER
-            $order->user->email('ads-purchased', $email_content);
+            if ($order->user->id_user !== $this->user->id_user)
+            {
+                $order->user->email('ads-purchased', $email_content);
+            }
 
             // send email to ad OWNER
             $this->user->email('ads-sold', $email_content);
