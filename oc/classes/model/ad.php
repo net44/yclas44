@@ -838,6 +838,13 @@ class Model_Ad extends ORM {
 
         $this->last_modified = Date::unix2mysql();
 
+        $imagefly_cache = Core::config('imagefly.cache_dir').$this->image_path();
+
+        if (is_dir($imagefly_cache))
+        {
+            File::delete($imagefly_cache);
+        }
+
         try
         {
             $this->save();

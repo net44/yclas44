@@ -614,8 +614,12 @@ class Core {
             if (Valid::url($image))
             {
                 $image_path = str_replace(Core::S3_domain(), '', $image);
+                
                 if (($pos = strpos($image_path, '?'))>0)
+                {
+                    $image_query = substr($image_path, $pos);
                     $image_path = substr($image_path, 0, $pos);
+                }
             }
 
             if (file_exists($image_path))
@@ -629,6 +633,11 @@ class Core {
 
                 if ($mode = 'crop')
                     $params.='-c';
+
+                if (isset($image_query))
+                {
+                    return Route::url('imagefly',  array('params'=>$params,'imagepath'=>$image_path)).$image_query;
+                }
 
                 return Route::url('imagefly',  array('params'=>$params,'imagepath'=>$image_path));
             }
