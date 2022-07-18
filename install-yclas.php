@@ -210,7 +210,7 @@ class install{
      */
     public static function versions()
     {
-        return json_decode(core::curl_get_contents('https://raw.githubusercontent.com/yclas/yclas/master/versions.json?t='.time()),TRUE);
+        return json_decode(core::curl_get_contents('https://yclas.nyc3.digitaloceanspaces.com/self-hosted/versions.json?t='.time()),TRUE);
     }
 
     /**
