@@ -39,12 +39,6 @@ class Auth_Controller extends Controller
 				$this->redirect($url);
 			}
 
-            //check if user is spam
-            if (Model_User::is_spam())
-            {
-                $this->redirect(Route::url('oc-panel', ['directory' => 'user', 'controller' => 'auth', 'action' => 'logout']));
-            }
-
             //in case we are loading another theme since we use the allow query we force the configs of the selected theme
             if (Theme::$theme != Core::config('appearance.theme') AND Core::config('appearance.allow_query_theme')=='1')
                 Theme::initialize(Core::config('appearance.theme'));

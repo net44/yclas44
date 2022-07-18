@@ -57,12 +57,6 @@ class Controller_Panel_Auth extends Controller {
             if ($user->loaded() AND $user->status == Model_User::STATUS_UNVERIFIED) {
                 $blocked_login = TRUE;
 
-                $user->email('auth-verify-email', ['[USER.PWD]' => '–', '[URL.QL]' => $user->ql('oc-panel', [
-                    'controller' => 'profile',
-                    'action' => 'verify',
-                    'id' => $user->verification_code,
-                ], TRUE)]);
-
                 Alert::set(Alert::WARNING, __('Please verify your email before log in. We have sent you a verification link to your email.'));
             }
 

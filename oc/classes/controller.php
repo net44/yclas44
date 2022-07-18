@@ -88,6 +88,14 @@ class Controller extends Kohana_Controller
             Alert::set(Alert::INFO, __('Please, choose a plan first'));
             HTTP::redirect(Route::url('pricing'));
         }
+        
+        //check if user is spam or inactive
+        if (Model_User::is_spam() OR Model_User::is_inactive())
+        {
+            Auth::instance()->logout(TRUE);
+
+            $this->redirect(Route::url('default'));
+        }
     }
 
     /**

@@ -838,6 +838,13 @@ class Model_Ad extends ORM {
 
         $this->last_modified = Date::unix2mysql();
 
+        $imagefly_cache = Core::config('imagefly.cache_dir').$this->image_path();
+
+        if (is_dir($imagefly_cache))
+        {
+            File::delete($imagefly_cache);
+        }
+
         try
         {
             $this->save();
@@ -1278,7 +1285,10 @@ class Model_Ad extends ORM {
                                     '[CUSTOMER.ADDRESS]' => $order->user->address);
 
             // send email to BUYER
-            $order->user->email('ads-purchased', $email_content);
+            if ($order->user->id_user !== $this->user->id_user)
+            {
+                $order->user->email('ads-purchased', $email_content);
+            }
 
             // send email to ad OWNER
             $this->user->email('ads-sold', $email_content);

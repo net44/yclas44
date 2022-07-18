@@ -41,12 +41,6 @@ class Auth_Frontcontroller extends Controller
 
                 $this->redirect($url);
             }
-
-            //check if user is spam
-            if (Model_User::is_spam())
-            {
-                $this->redirect(Route::url('oc-panel', ['directory' => 'user', 'controller' => 'auth', 'action' => 'logout']));
-            }
         }
 
     }
